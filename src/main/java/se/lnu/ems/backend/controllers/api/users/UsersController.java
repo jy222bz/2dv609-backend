@@ -32,6 +32,6 @@ public class UsersController {
         if (result.hasErrors()) {
             return result.getAllErrors();
         }
-        return usersService;
+        return usersService.create();
     }
 }

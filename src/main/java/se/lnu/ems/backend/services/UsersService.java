@@ -22,7 +22,7 @@ public class UsersService {
         return list;
     }
 
-    public User create() {
-        return null;
+    public User create(User user) {
+        return usersRepository.save(user);
     }
 }

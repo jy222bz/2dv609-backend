@@ -17,9 +17,9 @@ spring:
   application:
     name: demoservice
   datasource:
-    username: root
-    password: root
-    url: jdbc:mysql://192.168.2.1:3306/ems?createDatabaseIfNotExist=true
+    username: ems
+    password: SeoVszZib34K
+    url: jdbc:mysql://134.209.247.232:3306/ems?createDatabaseIfNotExist=true
 server:
   port: 8081
 

@@ -9,20 +9,17 @@ public class CreateInput {
 
     @NotNull
     @NotEmpty()
-    @Min(8)
-    @Max(255)
+    @Size(min = 8, max = 255)
     private String password;
 
     @NotNull
     @NotEmpty()
-    @Min(1)
-    @Max(255)
+    @Size(min = 1, max = 255)
     private String firstName;
 
     @NotNull
     @NotEmpty()
-    @Min(1)
-    @Max(255)
+    @Size(min = 1, max = 255)
     private String lastName;
 
     private int role;

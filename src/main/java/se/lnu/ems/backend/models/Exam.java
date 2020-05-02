@@ -31,38 +31,41 @@ public class Exam {
 	/**
 	 * The creation date of the exam. 
 	 */
-	@Column(nullable = false, updatable = false, name = "created_at")
-	private Date creationDate;
+	@Column(name = "created_at")
+	private Date createdAt;
 	
 	/**
 	 * The date when the exam can be started. The student can only do the exam
 	 */
-	@Column(nullable = false)
+	@Column(nullable = false, name = "start_at")
 	private Date startDate;
 	
 	/**
 	 * The date when the exam ends. After this date, the student can 
 	 * no longer do the exam.
 	 */
-	@Column(nullable = false)
+	@Column(nullable = false, name = "end_at")
 	private Date endDate;
+	
 	
 	/**
 	 *  The class code. For instance, 2DV609.
 	 */
-	@Column(nullable = false)
+	/*
+	@Column(nullable = false, name = "class_code")
 	private String classCode;
-	
+	*/
 	/**
 	 *  Credits, also called högskolepoäng in swedish. 
 	 */
+	/*
 	@Column(nullable = false)
 	private float credits;
-	
+	*/
 	/**
 	 * The title of the exam.
 	 */
-	@Column(length = 64, name = "name")
+	@Column(length = 64, name = "title")
 	private String title;
 	
 	public Exam() {}
@@ -81,6 +84,14 @@ public class Exam {
 	 */
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+	
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 	
 	/*

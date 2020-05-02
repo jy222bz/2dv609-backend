@@ -58,10 +58,15 @@ public class User {
      */
     private String note;
 
+    @ManyToOne()
+    @JoinColumn(name = "role_id")
+    private Role role;
+
     /**
      * A constructor, to construct an object.
      */
     public User() {
+        /* No need for parameters.*/
     }
 
     /**
@@ -212,9 +217,27 @@ public class User {
     /**
      * It sets the password.
      *
-     * @param password the passowrd of the user.
+     * @param password the password of the user.
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * It returns the role.
+     *
+     * @return Role.
+     */
+    public Role getRole() {
+        return role;
+    }
+
+    /**
+     * It sets the role.
+     *
+     * @param role the role.
+     */
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

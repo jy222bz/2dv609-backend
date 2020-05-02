@@ -1,4 +1,4 @@
-package se.lnu.ems.backend.controllers.api.users.input;
+package se.lnu.ems.backend.controllers.api.role.input;
 
 import org.springframework.lang.NonNull;
 

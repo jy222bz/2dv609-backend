@@ -1,15 +1,16 @@
 package se.lnu.ems.backend.controllers.api.users.input;
 
+
 import javax.validation.constraints.*;
 
 /**
- * A class for the create input.
+ * A class for the update input.
  *
  * @author Jacob Yousif
  * @version 1.0
  * @since 2020-05-01
  */
-public class CreateInput {
+public class UpdateInput {
 
     /**
      * A private field for the e-mail.
@@ -17,6 +18,13 @@ public class CreateInput {
     @NotNull
     @Email
     private String email;
+
+    /**
+     * A private field for user id.
+     */
+    @NotNull
+    @NotEmpty()
+    private long id;
 
     /**
      * A private field for the password.
@@ -43,7 +51,7 @@ public class CreateInput {
     private String lastName;
 
     /**
-     * A private field foe the role id.
+     * A private field for the role id.
      */
     @NotNull
     @Min(1)
@@ -73,7 +81,7 @@ public class CreateInput {
     private String note;
 
     /**
-     * It returns the e-mail.
+     * It returns the e-mail
      *
      * @return String.
      */
@@ -129,7 +137,7 @@ public class CreateInput {
     /**
      * It returns the last name.
      *
-     * @return last name.
+     * @return the last name.
      */
     public String getLastName() {
         return lastName;
@@ -138,7 +146,7 @@ public class CreateInput {
     /**
      * It sets the last name.
      *
-     * @param lastName last name.
+     * @param lastName the last name.
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
@@ -156,9 +164,25 @@ public class CreateInput {
     /**
      * It sets the role id.
      *
-     * @param roleId role id.
+     * @param roleId the role id.
      */
     public void setRoleId(Long roleId) {
         this.roleId = roleId;
+    }
+
+    /**
+     * It returns the user id.
+     * @return Long.
+     */
+    public long getUserId() {
+        return id;
+    }
+
+    /**
+     * It sets the id.
+     * @param id the id of the user.
+     */
+    public void setId(long id) {
+        this.id = id;
     }
 }

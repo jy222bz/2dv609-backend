@@ -22,7 +22,7 @@ import javax.validation.Valid;
 public class RolesController {
 
     /**
-     * A private foeld foe the roles service.
+     * A private for the roles service.
      */
     private final RolesService rolesService;
 

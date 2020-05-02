@@ -8,6 +8,8 @@ import se.lnu.ems.backend.controllers.api.users.input.CreateInput;
 import se.lnu.ems.backend.controllers.api.users.input.RetrieveInput;
 
 import se.lnu.ems.backend.controllers.api.users.input.UpdateInput;
+import se.lnu.ems.backend.exceptions.BaseException;
+import se.lnu.ems.backend.exceptions.Classification;
 import se.lnu.ems.backend.models.Role;
 import se.lnu.ems.backend.models.User;
 import se.lnu.ems.backend.models.UserManager;
@@ -84,7 +86,7 @@ public class UsersController {
         }
         Optional<Role> role = rolesService.findById(input.getRoleId());
         if (!role.isPresent()) {
-            throw new RuntimeException("Role not found");
+            throw new BaseException(Classification.NO_SUCH_ROLE);
         }
         return usersService.create(userManager.createUser(input, role.get()));
     }
@@ -102,8 +104,11 @@ public class UsersController {
         }
         Optional<Role> role = rolesService.findById(input.getRoleId());
         Optional<User> user = usersService.findById(Long.parseLong(id));
-        if (!role.isPresent() || !user.isPresent()) {
-            throw new RuntimeException("Role or User is not found!");
+        if (!user.isPresent()) {
+            throw new BaseException(Classification.NO_SUCH_USER);
+        }
+        if (!role.isPresent()) {
+            throw new BaseException(Classification.NO_SUCH_ROLE);
         }
         usersService.update(userManager.updateUser(input, user.get(), role.get()));
         return user;
@@ -122,10 +127,9 @@ public class UsersController {
         }
         Optional<User> user = usersService.findById(Long.parseLong(id));
         if (!user.isPresent()) {
-            throw new RuntimeException("User is not found!");
+            throw new BaseException(Classification.NO_SUCH_USER);
         }
         usersService.delete(user.get());
-
         return null;
     }
 }

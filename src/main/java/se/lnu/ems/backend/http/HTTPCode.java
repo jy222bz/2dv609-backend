@@ -21,7 +21,6 @@ public enum HTTPCode {
      * A constructor to construct the object.
      *
      * @param code  code.
-     * @param nCode code.
      */
     HTTPCode(String code) {
         this.code = code;

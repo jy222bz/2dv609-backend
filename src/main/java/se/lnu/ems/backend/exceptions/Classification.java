@@ -12,12 +12,10 @@ public enum Classification {
     NO_SUCH_USER("The user is not found!"),
     NO_SUCH_ROLE("The role is not found!");
 
-
     /**
      * A private field for the description.
      */
     private final String desc;
-
 
     /**
      * A constructor to construct the object.

@@ -162,5 +162,4 @@ public class UpdateInput {
     public void setRoleId(Long roleId) {
         this.roleId = roleId;
     }
-
 }

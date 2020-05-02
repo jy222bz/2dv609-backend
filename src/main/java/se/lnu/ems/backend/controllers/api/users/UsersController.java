@@ -118,11 +118,10 @@ public class UsersController {
     /**
      * It deletes the user.
      *
-     * @param input  the user data.
      * @param result the binding result.
      */
     @DeleteMapping(value = "{id}", consumes = "application/json")
-    public Object delete(@RequestBody @Valid CreateInput input, BindingResult result, @PathVariable String id) {
+    public Object delete(BindingResult result, @PathVariable String id) {
         if (result.hasErrors()) {
             return result.getAllErrors();
         }

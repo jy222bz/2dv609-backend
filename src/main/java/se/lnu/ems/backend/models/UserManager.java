@@ -57,7 +57,6 @@ public class UserManager {
         return user;
     }
 
-
     /**
      * It updates the user.
      *

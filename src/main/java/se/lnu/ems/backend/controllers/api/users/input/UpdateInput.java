@@ -20,13 +20,6 @@ public class UpdateInput {
     private String email;
 
     /**
-     * A private field for user id.
-     */
-    @NotNull
-    @NotEmpty()
-    private long id;
-
-    /**
      * A private field for the password.
      */
     @NotNull
@@ -170,19 +163,4 @@ public class UpdateInput {
         this.roleId = roleId;
     }
 
-    /**
-     * It returns the user id.
-     * @return Long.
-     */
-    public long getUserId() {
-        return id;
-    }
-
-    /**
-     * It sets the id.
-     * @param id the id of the user.
-     */
-    public void setId(long id) {
-        this.id = id;
-    }
 }

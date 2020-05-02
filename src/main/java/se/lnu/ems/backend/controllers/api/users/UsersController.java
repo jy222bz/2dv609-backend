@@ -92,7 +92,6 @@ public class UsersController {
         usersService.create(userManager.createUser(input, role.get()));
         return HTTPCode.CREATED.getCode();
     }
-
     /**
      * It updates the user.
      *
@@ -106,11 +105,11 @@ public class UsersController {
         }
         Optional<Role> role = rolesService.findById(input.getRoleId());
         Optional<User> user = usersService.findById(Long.parseLong(id));
-        if (!user.isPresent()) {
-            throw new BaseException(Classification.NO_SUCH_USER);
-        }
         if (!role.isPresent()) {
             throw new BaseException(Classification.NO_SUCH_ROLE);
+        }
+        if (!user.isPresent()) {
+            throw new BaseException(Classification.NO_SUCH_USER);
         }
         usersService.update(userManager.updateUser(input, user.get(), role.get()));
         return HTTPCode.OKAY.getCode();

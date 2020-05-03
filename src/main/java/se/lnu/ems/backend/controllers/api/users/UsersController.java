@@ -1,6 +1,7 @@
 package se.lnu.ems.backend.controllers.api.users;
 
 
+import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -11,6 +12,7 @@ import se.lnu.ems.backend.controllers.api.users.input.RetrieveInput;
 import se.lnu.ems.backend.controllers.api.users.input.UpdateInput;
 import se.lnu.ems.backend.exceptions.input.InputException;
 import se.lnu.ems.backend.exceptions.role.RoleNotFoundException;
+import se.lnu.ems.backend.exceptions.user.UserNotCreatedException;
 import se.lnu.ems.backend.exceptions.user.UserNotFoundException;
 import se.lnu.ems.backend.models.Role;
 import se.lnu.ems.backend.models.User;
@@ -48,14 +50,20 @@ public class UsersController {
     private final RolesService rolesService;
 
     /**
+     * A private field for the conversion service.
+     */
+    private final ConversionService conversionService;
+
+    /**
      * A constructor, to construct an object.
      *
      * @param usersService the users service.
      * @param rolesService the roles service.
      */
-    public UsersController(UsersService usersService, RolesService rolesService) {
+    public UsersController(UsersService usersService, RolesService rolesService, ConversionService conversionService) {
         this.usersService = usersService;
         this.rolesService = rolesService;
+        this.conversionService = conversionService;
         userManager = UserManager.getInstance();
     }
 
@@ -86,14 +94,18 @@ public class UsersController {
     @ResponseStatus(HttpStatus.CREATED)
     public User create(@RequestBody @Valid CreateInput input, BindingResult result) {
         if (result.hasErrors()) {
-            // return result.getAllErrors();
             throw new InputException();
         }
         Optional<Role> role = rolesService.findById(input.getRoleId());
         if (role.isEmpty()) {
             throw new RoleNotFoundException();
         }
-        return usersService.create(userManager.createUser(input, role.get()));
+        User user = conversionService.convert(input, User.class);
+        if (user == null) {
+            throw new UserNotCreatedException();
+        }
+        user.setRole(role.get());
+        return usersService.create(user);
     }
 
     /**
@@ -101,22 +113,24 @@ public class UsersController {
      *
      * @param input  the user data.
      * @param result the binding result.
+     * @return Object the updated user.
      */
     @PutMapping(value = "{id}", consumes = "application/json")
-    public void update(@RequestBody @Valid UpdateInput input, BindingResult result, @PathVariable String id) {
+    public Object update(@RequestBody @Valid UpdateInput input, BindingResult result, @PathVariable @Valid Long id) {
         if (result.hasErrors()) {
-            //return result.getAllErrors();
             throw new InputException();
         }
         Optional<Role> role = rolesService.findById(input.getRoleId());
-        Optional<User> user = usersService.findById(Long.parseLong(id));
+        Optional<User> user = usersService.findById(id);
         if (role.isEmpty()) {
             throw new RoleNotFoundException();
         }
         if (user.isEmpty()) {
             throw new UserNotFoundException();
         }
-        usersService.update(userManager.updateUser(input, user.get(), role.get()));
+        User updatedUser = userManager.updateUser(input, user.get(), role.get());
+        usersService.update(updatedUser);
+        return updatedUser;
     }
 
     /**
@@ -125,12 +139,11 @@ public class UsersController {
      * @param result the binding result.
      */
     @DeleteMapping(value = "{id}", consumes = "application/json")
-    public void delete(BindingResult result, @PathVariable String id) {
+    public void delete(BindingResult result, @PathVariable @Valid Long id) {
         if (result.hasErrors()) {
-           // return result.getAllErrors();
             throw new InputException();
         }
-        Optional<User> user = usersService.findById(Long.parseLong(id));
+        Optional<User> user = usersService.findById(id);
         if (user.isEmpty()) {
             throw new UserNotFoundException();
         }

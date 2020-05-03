@@ -1,4 +1,4 @@
-package se.lnu.ems.backend.exceptions.input;
+package se.lnu.ems.backend.exceptions.user;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -6,20 +6,20 @@ import se.lnu.ems.backend.exceptions.BaseException;
 import se.lnu.ems.backend.exceptions.Classification;
 
 /**
- * A class for InputException.
+ * A class for UserNotFoundException.
  *
  * @author Jacob Yousif
  * @version 1.0
  * @since 2020-05-01
  */
-@ResponseStatus(value = HttpStatus.BAD_REQUEST)
-public class InputException extends BaseException {
+@ResponseStatus(value = HttpStatus.NOT_FOUND)
+public class UserNotCreatedException extends BaseException {
 
     /**
      * A constructor to construct an object.
      */
-    public InputException() {
-        super(Classification.INPUT_INVALID);
+    public UserNotCreatedException() {
+        super(Classification.USER_COULD_NOT_BE_CREATED);
     }
 
     /**
@@ -27,7 +27,7 @@ public class InputException extends BaseException {
      *
      * @param message a customized message for the exception.
      */
-    public InputException(String message) {
-        super(Classification.INPUT_INVALID, message);
+    public UserNotCreatedException(String message) {
+        super(Classification.USER_COULD_NOT_BE_CREATED, message);
     }
 }

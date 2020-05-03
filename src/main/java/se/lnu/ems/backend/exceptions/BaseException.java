@@ -27,6 +27,12 @@ public class BaseException extends RuntimeException {
         this.description = classification.getDescription();
     }
 
+    /**
+     * A constructor, to construct an object.
+     *
+     * @param classification the classification of the exception.
+     * @param description    a customized message for the exception.
+     */
     public BaseException(Classification classification, String description) {
         super(classification.getDescription());
         this.code = classification.getCode();
@@ -42,6 +48,11 @@ public class BaseException extends RuntimeException {
         return description;
     }
 
+    /**
+     * It returns the code of the exception.
+     *
+     * @return int
+     */
     public int getCode() {
         return code;
     }

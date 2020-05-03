@@ -1,12 +1,11 @@
 package se.lnu.ems.backend.models;
 
-import se.lnu.ems.backend.controllers.api.users.input.CreateInput;
 import se.lnu.ems.backend.controllers.api.users.input.UpdateInput;
 
 import java.util.Date;
 
 /**
- * A class for creating and updating users.
+ * A class for updating users.
  *
  * @author Jacob Yousif
  * @version 1.0
@@ -35,26 +34,6 @@ public class UserManager {
             userManager = new UserManager();
         }
         return userManager;
-    }
-
-    /**
-     * It takes the create input to create a new user and returns it.
-     *
-     * @param input the create input.
-     * @param role  the role of the user.
-     * @return User
-     */
-    public User createUser(CreateInput input, Role role) {
-        User user = new User();
-        user.setFirstName(input.getFirstName());
-        user.setLastName(input.getLastName());
-        user.setRole(role);
-        user.setEmail(input.getEmail());
-        user.setPassword(input.getPassword());
-        user.setCreatedAt(new Date());
-        user.setUpdatedAt(new Date());
-        user.setNote(input.getNote());
-        return user;
     }
 
     /**

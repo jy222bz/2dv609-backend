@@ -11,6 +11,7 @@ public enum Classification {
 
     INPUT_INVALID(-1000, "Invalid input"),
     USER_NOT_FOUND(-5000, "The user is not found!"),
+    USER_COULD_NOT_BE_CREATED(-5001, "The user could not created!"),
     ROLE_NOT_FOUND(-6000, "The role is not found!");
 
     /**
@@ -18,6 +19,9 @@ public enum Classification {
      */
     private final String desc;
 
+    /**
+     * A private field for the code.
+     */
     private final int code;
 
     /**
@@ -39,6 +43,11 @@ public enum Classification {
         return desc;
     }
 
+    /**
+     * It returns the code.
+     *
+     * @return int
+     */
     public int getCode() {
         return code;
     }

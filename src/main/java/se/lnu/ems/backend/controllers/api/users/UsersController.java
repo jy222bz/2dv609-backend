@@ -57,8 +57,9 @@ public class UsersController {
     /**
      * A constructor, to construct an object.
      *
-     * @param usersService the users service.
-     * @param rolesService the roles service.
+     * @param usersService      the users service.
+     * @param rolesService      the roles service.
+     * @param conversionService the conversion service.
      */
     public UsersController(UsersService usersService, RolesService rolesService, ConversionService conversionService) {
         this.usersService = usersService;

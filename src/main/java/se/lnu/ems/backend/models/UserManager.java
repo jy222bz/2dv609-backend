@@ -63,7 +63,7 @@ public class UserManager {
      * @param input update input.
      * @param user  the user.
      * @param role  the role of the user.
-     * @return the updates user.
+     * @return User
      */
     public User updateUser(UpdateInput input, User user, Role role) {
         user.setFirstName(input.getFirstName());

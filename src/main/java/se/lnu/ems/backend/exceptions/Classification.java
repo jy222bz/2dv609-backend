@@ -9,20 +9,24 @@ package se.lnu.ems.backend.exceptions;
  */
 public enum Classification {
 
-    NO_SUCH_USER("The user is not found!"),
-    NO_SUCH_ROLE("The role is not found!");
+    INPUT_INVALID(-1000, "Invalid input"),
+    USER_NOT_FOUND(-5000, "The user is not found!"),
+    ROLE_NOT_FOUND(-6000, "The role is not found!");
 
     /**
      * A private field for the description.
      */
     private final String desc;
 
+    private final int code;
+
     /**
      * A constructor to construct the object.
      *
      * @param desc desc.
      */
-    Classification(String desc) {
+    Classification(int code, String desc) {
+        this.code = code;
         this.desc = desc;
     }
 
@@ -33,5 +37,9 @@ public enum Classification {
      */
     public String getDescription() {
         return desc;
+    }
+
+    public int getCode() {
+        return code;
     }
 }

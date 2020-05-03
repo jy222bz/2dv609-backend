@@ -1,5 +1,6 @@
 package se.lnu.ems.backend.exceptions;
 
+
 /**
  * An interface for the base exception.
  *
@@ -8,6 +9,7 @@ package se.lnu.ems.backend.exceptions;
  * @since 2020-05-01
  */
 public class BaseException extends RuntimeException {
+    private final int code;
 
     /**
      * A private field for the description.
@@ -21,7 +23,14 @@ public class BaseException extends RuntimeException {
      */
     public BaseException(Classification classification) {
         super(classification.getDescription());
+        this.code = classification.getCode();
         this.description = classification.getDescription();
+    }
+
+    public BaseException(Classification classification, String description) {
+        super(classification.getDescription());
+        this.code = classification.getCode();
+        this.description = description;
     }
 
     /**
@@ -31,5 +40,9 @@ public class BaseException extends RuntimeException {
      */
     public String getDescription() {
         return description;
+    }
+
+    public int getCode() {
+        return code;
     }
 }

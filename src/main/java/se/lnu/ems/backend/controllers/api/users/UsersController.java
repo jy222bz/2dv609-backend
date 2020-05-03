@@ -2,15 +2,16 @@ package se.lnu.ems.backend.controllers.api.users;
 
 
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import se.lnu.ems.backend.controllers.api.users.input.CreateInput;
 import se.lnu.ems.backend.controllers.api.users.input.RetrieveInput;
 
 import se.lnu.ems.backend.controllers.api.users.input.UpdateInput;
-import se.lnu.ems.backend.exceptions.BaseException;
-import se.lnu.ems.backend.exceptions.Classification;
-import se.lnu.ems.backend.http.HTTPCode;
+import se.lnu.ems.backend.exceptions.input.InputException;
+import se.lnu.ems.backend.exceptions.role.RoleNotFoundException;
+import se.lnu.ems.backend.exceptions.user.UserNotFoundException;
 import se.lnu.ems.backend.models.Role;
 import se.lnu.ems.backend.models.User;
 import se.lnu.ems.backend.models.UserManager;
@@ -68,7 +69,8 @@ public class UsersController {
     @GetMapping("")
     public Object get(@Valid RetrieveInput input, BindingResult result) {
         if (result.hasErrors()) {
-            return result.getAllErrors();
+            //return result.getAllErrors();
+            throw new InputException();
         }
         return usersService.retrieve(PageRequest.of(input.getPageIndex(), input.getPageSize()));
     }
@@ -81,17 +83,19 @@ public class UsersController {
      * @return Object.
      */
     @PostMapping(value = "", consumes = "application/json")
-    public Object create(@RequestBody @Valid CreateInput input, BindingResult result) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public User create(@RequestBody @Valid CreateInput input, BindingResult result) {
         if (result.hasErrors()) {
-            return result.getAllErrors();
+            // return result.getAllErrors();
+            throw new InputException();
         }
         Optional<Role> role = rolesService.findById(input.getRoleId());
-        if (!role.isPresent()) {
-            throw new BaseException(Classification.NO_SUCH_ROLE);
+        if (role.isEmpty()) {
+            throw new RoleNotFoundException();
         }
-        usersService.create(userManager.createUser(input, role.get()));
-        return HTTPCode.CREATED.getCode();
+        return usersService.create(userManager.createUser(input, role.get()));
     }
+
     /**
      * It updates the user.
      *
@@ -99,20 +103,20 @@ public class UsersController {
      * @param result the binding result.
      */
     @PutMapping(value = "{id}", consumes = "application/json")
-    public Object update(@RequestBody @Valid UpdateInput input, BindingResult result, @PathVariable String id) {
+    public void update(@RequestBody @Valid UpdateInput input, BindingResult result, @PathVariable String id) {
         if (result.hasErrors()) {
-            return result.getAllErrors();
+            //return result.getAllErrors();
+            throw new InputException();
         }
         Optional<Role> role = rolesService.findById(input.getRoleId());
         Optional<User> user = usersService.findById(Long.parseLong(id));
-        if (!role.isPresent()) {
-            throw new BaseException(Classification.NO_SUCH_ROLE);
+        if (role.isEmpty()) {
+            throw new RoleNotFoundException();
         }
-        if (!user.isPresent()) {
-            throw new BaseException(Classification.NO_SUCH_USER);
+        if (user.isEmpty()) {
+            throw new UserNotFoundException();
         }
         usersService.update(userManager.updateUser(input, user.get(), role.get()));
-        return HTTPCode.OKAY.getCode();
     }
 
     /**
@@ -121,15 +125,15 @@ public class UsersController {
      * @param result the binding result.
      */
     @DeleteMapping(value = "{id}", consumes = "application/json")
-    public Object delete(BindingResult result, @PathVariable String id) {
+    public void delete(BindingResult result, @PathVariable String id) {
         if (result.hasErrors()) {
-            return result.getAllErrors();
+           // return result.getAllErrors();
+            throw new InputException();
         }
         Optional<User> user = usersService.findById(Long.parseLong(id));
-        if (!user.isPresent()) {
-            throw new BaseException(Classification.NO_SUCH_USER);
+        if (user.isEmpty()) {
+            throw new UserNotFoundException();
         }
         usersService.delete(user.get());
-        return HTTPCode.OKAY.getCode();
     }
 }

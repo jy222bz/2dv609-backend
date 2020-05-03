@@ -7,7 +7,7 @@ import se.lnu.ems.backend.models.User;
 import java.util.Date;
 
 /**
- * A class for the users controller.
+ * A class for the users, it converts the input into a user.
  *
  * @author Jacob Yousif
  * @version 1.0

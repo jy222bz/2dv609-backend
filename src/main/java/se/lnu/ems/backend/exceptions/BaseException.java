@@ -9,6 +9,9 @@ package se.lnu.ems.backend.exceptions;
  * @since 2020-05-01
  */
 public class BaseException extends RuntimeException {
+    /**
+     * A private field for the code of the exception.
+     */
     private final int code;
 
     /**

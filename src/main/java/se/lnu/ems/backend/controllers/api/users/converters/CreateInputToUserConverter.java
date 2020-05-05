@@ -1,6 +1,7 @@
 package se.lnu.ems.backend.controllers.api.users.converters;
 
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 import se.lnu.ems.backend.controllers.api.users.input.CreateInput;
 import se.lnu.ems.backend.models.User;
 
@@ -11,9 +12,10 @@ import java.util.Date;
  *
  * @author Jacob Yousif
  * @version 1.0
- * @since 2020-05-01
+ * @since 2020 -05-01
  */
-public class UserConverterFromCreateInput implements Converter<CreateInput, User> {
+@Component
+public class CreateInputToUserConverter implements Converter<CreateInput, User> {
 
     /**
      * It takes the create input to convert a new user and returns it.

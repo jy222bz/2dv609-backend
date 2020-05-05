@@ -1,12 +1,12 @@
-package se.lnu.ems.backend.controllers.api.role;
+package se.lnu.ems.backend.controllers.api.roles;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import se.lnu.ems.backend.controllers.api.role.input.RetrieveInput;
-import se.lnu.ems.backend.services.RolesService;
+import se.lnu.ems.backend.controllers.api.roles.input.RetrieveInput;
+import se.lnu.ems.backend.services.roles.IRolesService;
 
 import javax.validation.Valid;
 
@@ -15,7 +15,7 @@ import javax.validation.Valid;
  *
  * @author Jacob Yousif
  * @version 1.0
- * @since 2020-05-01
+ * @since 2020 -05-01
  */
 @RestController("RolesController")
 @RequestMapping("/api/v1/roles")
@@ -24,14 +24,14 @@ public class RolesController {
     /**
      * A private for the roles service.
      */
-    private final RolesService rolesService;
+    private final IRolesService rolesService;
 
     /**
      * A constructor, to construct an object.
      *
      * @param rolesService the roles service.
      */
-    public RolesController(RolesService rolesService) {
+    public RolesController(IRolesService rolesService) {
         this.rolesService = rolesService;
     }
 
@@ -40,7 +40,7 @@ public class RolesController {
      *
      * @param input  the input.
      * @param result the result.
-     * @return Object.
+     * @return Object. object
      */
     @GetMapping("")
     public Object get(@Valid RetrieveInput input, BindingResult result) {

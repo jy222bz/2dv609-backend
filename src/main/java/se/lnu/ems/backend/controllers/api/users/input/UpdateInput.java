@@ -8,7 +8,7 @@ import javax.validation.constraints.*;
  *
  * @author Jacob Yousif
  * @version 1.0
- * @since 2020-05-01
+ * @since 2020 -05-01
  */
 public class UpdateInput {
 
@@ -62,7 +62,7 @@ public class UpdateInput {
     /**
      * It returns the note.
      *
-     * @return String.
+     * @return String. note
      */
     public String getNote() {
         return note;
@@ -76,7 +76,7 @@ public class UpdateInput {
     /**
      * It returns the e-mail
      *
-     * @return String.
+     * @return String. email
      */
     public String getEmail() {
         return email;
@@ -94,7 +94,7 @@ public class UpdateInput {
     /**
      * It returns the password.
      *
-     * @return String.
+     * @return String. password
      */
     public String getPassword() {
         return password;
@@ -112,7 +112,7 @@ public class UpdateInput {
     /**
      * It returns the first name.
      *
-     * @return String.
+     * @return String. first name
      */
     public String getFirstName() {
         return firstName;
@@ -148,7 +148,7 @@ public class UpdateInput {
     /**
      * It returns the role id.
      *
-     * @return Long.
+     * @return Long. role id
      */
     public Long getRoleId() {
         return roleId;

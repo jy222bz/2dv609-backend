@@ -1,23 +1,23 @@
-package se.lnu.ems.backend.services;
+package se.lnu.ems.backend.services.users;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import se.lnu.ems.backend.models.User;
 import se.lnu.ems.backend.repositories.UsersRepository;
+import se.lnu.ems.backend.services.users.exceptions.UserNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * A class for the Users Service.
  *
  * @author Jacob Yousif
  * @version 1.0
- * @since 2020-05-01
+ * @since 2020 -05-01
  */
 @Service
-public class UsersService {
+public class UsersServiceImpl implements IUsersService {
 
     /**
      * A private field for the user repository.
@@ -29,7 +29,7 @@ public class UsersService {
      *
      * @param usersRepository the user repository.
      */
-    public UsersService(UsersRepository usersRepository) {
+    public UsersServiceImpl(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
     }
 
@@ -39,6 +39,7 @@ public class UsersService {
      * @param pageable pageable.
      * @return List<User>
      */
+    @Override
     public List<User> retrieve(Pageable pageable) {
         var list = new ArrayList<User>();
         usersRepository.findAll(pageable).forEach(list::add);
@@ -49,10 +50,11 @@ public class UsersService {
      * It finds the user by the id.
      *
      * @param id the id of the user.
-     * @return Optional<User>
+     * @return User
      */
-    public Optional<User> findById(Long id) {
-        return usersRepository.findById(id);
+    @Override
+    public User findById(Long id) {
+        return usersRepository.findById(id).orElseThrow(UserNotFoundException::new);
     }
 
     /**
@@ -61,6 +63,7 @@ public class UsersService {
      * @param user the user.
      * @return User.
      */
+    @Override
     public User create(User user) {
         return usersRepository.save(user);
     }
@@ -70,6 +73,7 @@ public class UsersService {
      *
      * @param user the user.
      */
+    @Override
     public void delete(User user) {
         usersRepository.delete(user);
     }
@@ -79,6 +83,7 @@ public class UsersService {
      *
      * @param user the user.
      */
+    @Override
     public void update(User user) {
         usersRepository.save(user);
     }

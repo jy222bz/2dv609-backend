@@ -1,4 +1,4 @@
-package se.lnu.ems.backend.controllers.api.role.input;
+package se.lnu.ems.backend.controllers.api.roles.input;
 
 import org.springframework.lang.NonNull;
 
@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
  *
  * @author Jacob Yousif
  * @version 1.0
- * @since 2020-05-01
+ * @since 2020 -05-01
  */
 public class RetrieveInput {
 
@@ -31,7 +31,7 @@ public class RetrieveInput {
     /**
      * It returns the page index.
      *
-     * @return int.
+     * @return int. page index
      */
     public int getPageIndex() {
         return pageIndex;
@@ -49,7 +49,7 @@ public class RetrieveInput {
     /**
      * It returns the page size.
      *
-     * @return int.
+     * @return int. page size
      */
     public int getPageSize() {
         return pageSize;

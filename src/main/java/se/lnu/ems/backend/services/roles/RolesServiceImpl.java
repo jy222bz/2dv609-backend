@@ -1,23 +1,23 @@
-package se.lnu.ems.backend.services;
+package se.lnu.ems.backend.services.roles;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import se.lnu.ems.backend.models.Role;
 import se.lnu.ems.backend.repositories.RolesRepository;
+import se.lnu.ems.backend.services.roles.exceptions.RoleNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * A class for the Roles Service.
  *
  * @author Jacob Yousif
  * @version 1.0
- * @since 2020-05-01
+ * @since 2020 -05-01
  */
 @Service
-public class RolesService {
+public class RolesServiceImpl implements IRolesService {
 
     /**
      * A private field for the roles repository.
@@ -29,7 +29,7 @@ public class RolesService {
      *
      * @param rolesRepository the role repository.
      */
-    public RolesService(RolesRepository rolesRepository) {
+    public RolesServiceImpl(RolesRepository rolesRepository) {
         this.rolesRepository = rolesRepository;
     }
 
@@ -39,6 +39,7 @@ public class RolesService {
      * @param pageable pageable.
      * @return List<Role>
      */
+    @Override
     public List<Role> retrieve(Pageable pageable) {
         var list = new ArrayList<Role>();
         rolesRepository.findAll(pageable).forEach(list::add);
@@ -49,9 +50,10 @@ public class RolesService {
      * It finds the role by the id.
      *
      * @param id the id of the role.
-     * @return Optional<Role>
+     * @return Role
      */
-    public Optional<Role> findById(Long id) {
-        return rolesRepository.findById(id);
+    @Override
+    public Role findById(Long id) {
+        return rolesRepository.findById(id).orElseThrow(RoleNotFoundException::new);
     }
 }

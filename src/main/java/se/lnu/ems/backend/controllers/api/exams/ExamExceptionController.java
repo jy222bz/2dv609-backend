@@ -1,4 +1,4 @@
-package se.lnu.ems.backend.controllers.exams;
+package se.lnu.ems.backend.controllers.api.exams;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

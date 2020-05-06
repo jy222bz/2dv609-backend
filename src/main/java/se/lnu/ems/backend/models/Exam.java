@@ -1,6 +1,6 @@
 package se.lnu.ems.backend.models;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -237,6 +237,11 @@ public class Exam {
 		this.courseCode = courseCode;
 	}
 	
-	
+	/**
+	 * @return the ID of the exam.
+	 */
+	public long getID() {
+		return id;
+	}
 	
 }

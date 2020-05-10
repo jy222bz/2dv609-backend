@@ -17,7 +17,7 @@ public class UsersService {
     }
 
     public List<User> retrieve(Pageable pageable) {
-        var list = new ArrayList<User>();
+        ArrayList<User> list = new ArrayList<User>();
         usersRepository.findAll(pageable).forEach(list::add);
         return list;
     }

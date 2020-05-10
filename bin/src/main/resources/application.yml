@@ -1,0 +1,37 @@
+logging:
+  level:
+    .: error
+    org.springframework: ERROR
+    com.mkyong: ERROR
+
+spring:
+  profiles:
+    active: "dev"
+  main:
+    banner-mode: "off"
+
+---
+
+spring:
+  profiles: dev
+  application:
+    name: demoservice
+  datasource:
+    username: ems
+    password: SeoVszZib34K
+    url: jdbc:mysql://134.209.247.232:3306/ems?createDatabaseIfNotExist=true
+server:
+  port: 8081
+
+---
+
+spring:
+  profiles: prod
+  application:
+    name: ems-backend
+  datasource:
+    username: root
+    password: root
+    url:
+server:
+  port: 3301

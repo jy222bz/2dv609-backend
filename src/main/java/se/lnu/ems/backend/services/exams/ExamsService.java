@@ -1,12 +1,12 @@
-package se.lnu.ems.backend.services;
+package se.lnu.ems.backend.services.exams;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import org.springframework.data.domain.Pageable;
 
-import exceptions.InternalServerErrorException;
 import se.lnu.ems.backend.models.Exam;
+import se.lnu.ems.backend.services.exams.exceptions.InternalServerErrorException;
 
 
 public interface ExamsService {

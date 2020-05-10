@@ -24,8 +24,13 @@ public enum Code {
     /**
      * The Role not found.
      */
-    ROLE_NOT_FOUND(-6000, "The role is not found!");
+    ROLE_NOT_FOUND(-6000, "The role is not found!"),
 
+	/**
+	 * Exam not found
+	 */
+	EXAM_NOT_FOUND(-7000, "The exam does not exist.");
+	
     /**
      * A private field for the message.
      */

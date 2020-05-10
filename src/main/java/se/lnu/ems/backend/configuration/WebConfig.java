@@ -12,8 +12,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import se.lnu.ems.backend.models.Exam;
 import se.lnu.ems.backend.repositories.ExamsRepository;
-import se.lnu.ems.backend.services.ExamServiceImpl;
-import se.lnu.ems.backend.services.ExamsService;
+import se.lnu.ems.backend.services.exams.ExamServiceImpl;
+import se.lnu.ems.backend.services.exams.ExamsService;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {

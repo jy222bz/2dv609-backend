@@ -19,13 +19,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import exceptions.BadRequestException;
-import exceptions.InternalServerErrorException;
 import se.lnu.ems.backend.controllers.api.exams.input.CreateInput;
 import se.lnu.ems.backend.controllers.api.exams.input.RetrieveInput;
 import se.lnu.ems.backend.controllers.api.exams.input.UpdateInput;
 import se.lnu.ems.backend.models.Exam;
-import se.lnu.ems.backend.services.ExamsService;
+import se.lnu.ems.backend.services.exams.ExamsService;
+import se.lnu.ems.backend.services.exams.exceptions.BadRequestException;
+import se.lnu.ems.backend.services.exams.exceptions.InternalServerErrorException;
 
 /**
  * RestController for the exam component.

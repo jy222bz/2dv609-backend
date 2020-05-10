@@ -1,4 +1,4 @@
-package se.lnu.ems.backend.services;
+package se.lnu.ems.backend.services.exams;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import exceptions.InternalServerErrorException;
 import se.lnu.ems.backend.models.Exam;
 import se.lnu.ems.backend.repositories.ExamsRepository;
+import se.lnu.ems.backend.services.exams.exceptions.*;
 
 /**
  * This class is a service implementation of the exam service interface. 

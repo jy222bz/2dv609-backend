@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import exceptions.InternalServerErrorException;
+import se.lnu.ems.backend.services.exams.exceptions.*;
 import se.lnu.ems.backend.controllers.api.question.input.CreateInputQuestion;
 import se.lnu.ems.backend.models.Question;
 import se.lnu.ems.backend.services.questions.IQuestionService;

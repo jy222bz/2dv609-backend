@@ -1,10 +1,14 @@
-package exceptions;
+package se.lnu.ems.backend.services.exams.exceptions;
+
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import se.lnu.ems.backend.errors.BaseException;
+import se.lnu.ems.backend.errors.Code;
+
 @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-public class InternalServerErrorException extends Exception{
+public class InternalServerErrorException extends BaseException{
 
 	/**
 	 * Generated serial version ID
@@ -12,7 +16,7 @@ public class InternalServerErrorException extends Exception{
 	private static final long serialVersionUID = 952414179381562557L;
 
 	public InternalServerErrorException(String msg) {
-		super(msg);
+		super(Code.EXAM_NOT_FOUND.getValue(), msg);
 	}
 	
 }

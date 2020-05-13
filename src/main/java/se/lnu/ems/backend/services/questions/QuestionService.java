@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import exceptions.InternalServerErrorException;
+import se.lnu.ems.backend.services.exams.exceptions.*;
 import se.lnu.ems.backend.models.Question;
 import se.lnu.ems.backend.repositories.QuestionRepository;
 

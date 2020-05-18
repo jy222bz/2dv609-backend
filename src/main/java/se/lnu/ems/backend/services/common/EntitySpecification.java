@@ -10,13 +10,28 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Entity specification.
+ *
+ * @param <T> the type parameter
+ */
 public class EntitySpecification<T> implements org.springframework.data.jpa.domain.Specification<T> {
     private final List<SearchCriteria> list = new ArrayList<>();
 
+    /**
+     * Add.
+     *
+     * @param criteria the criteria
+     */
     public void add(SearchCriteria criteria) {
         list.add(criteria);
     }
 
+    /**
+     * Add if value not empty.
+     *
+     * @param criteria the criteria
+     */
     public void addIfValueNotEmpty(SearchCriteria criteria) {
         if ((criteria.getValue() == null) || ((criteria.getValue() instanceof String) && ((String) criteria.getValue()).isEmpty())) {
             return;

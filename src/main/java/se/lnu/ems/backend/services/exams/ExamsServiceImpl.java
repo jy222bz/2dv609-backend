@@ -17,14 +17,14 @@ import java.util.List;
  * @since 2020-04-02
  */
 @Service
-public class IExamsServiceImpl implements IExamsService {
+public class ExamsServiceImpl implements IExamsService {
 
     /**
      * An instance of the exam repository.
      */
     private final ExamsRepository examsRepository;
 
-    public IExamsServiceImpl(ExamsRepository examsRepository) {
+    public ExamsServiceImpl(ExamsRepository examsRepository) {
         this.examsRepository = examsRepository;
     }
 

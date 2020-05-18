@@ -49,5 +49,5 @@ public interface IUsersService {
      *
      * @param user the user.
      */
-    void update(User user);
+    User update(User user);
 }

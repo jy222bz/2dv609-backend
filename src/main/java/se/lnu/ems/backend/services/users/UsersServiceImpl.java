@@ -84,7 +84,7 @@ public class UsersServiceImpl implements IUsersService {
      * @param user the user.
      */
     @Override
-    public void update(User user) {
-        usersRepository.save(user);
+    public User update(User user) {
+        return usersRepository.save(user);
     }
 }

@@ -14,7 +14,7 @@ import java.util.List;
  * @version 1.0
  * @since 2020 -05-01
  */
-public class InputException extends BaseException {
+public class BadRequestException extends BaseException {
     private final List<ObjectError> errorList;
 
     /**
@@ -22,7 +22,7 @@ public class InputException extends BaseException {
      *
      * @param message a customized message for the exception.
      */
-    public InputException(String message) {
+    public BadRequestException(String message) {
         this(message, new ArrayList<>());
     }
 
@@ -31,7 +31,7 @@ public class InputException extends BaseException {
      *
      * @param errorList the error list
      */
-    public InputException(List<ObjectError> errorList) {
+    public BadRequestException(List<ObjectError> errorList) {
         this(Code.INPUT_INVALID.getMessage(), errorList);
     }
 
@@ -41,7 +41,7 @@ public class InputException extends BaseException {
      * @param message   the message
      * @param errorList the error list
      */
-    public InputException(String message, List<ObjectError> errorList) {
+    public BadRequestException(String message, List<ObjectError> errorList) {
         super(Code.INPUT_INVALID, message);
         this.errorList = errorList;
     }

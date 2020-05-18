@@ -29,8 +29,11 @@ public enum Code {
 	/**
 	 * Exam not found
 	 */
-	EXAM_NOT_FOUND(-7000, "The exam does not exist.");
-	
+	EXAM_NOT_FOUND(-7000, "The exam does not exist."),
+
+
+	QUESTION_NOT_FOUND(-8000, "The question does not exist.");
+
     /**
      * A private field for the message.
      */

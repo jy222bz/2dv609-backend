@@ -11,6 +11,9 @@ import javax.validation.constraints.Size;
 
 import org.springframework.lang.Nullable;
 
+/**
+ * The type Update input.
+ */
 public class UpdateInput {
 
 	/**
@@ -61,90 +64,114 @@ public class UpdateInput {
 	@Column(name = "note")
 	@Nullable
 	private String note;
-	
-	/**
-	 * @return Title of the exam.
-	 */
-	public String getTitle() {
+
+    /**
+     * Gets title.
+     *
+     * @return Title of the exam.
+     */
+    public String getTitle() {
 		return title;
 	}
-	
-	
-	/**
-	 * @param title A new title.
-	 */
-	public void setTitle(String title) {
+
+
+    /**
+     * Sets title.
+     *
+     * @param title A new title.
+     */
+    public void setTitle(String title) {
 		this.title = title;
 	}
-	
-	/**
-	 * @return The start date of the exam.
-	 */
-	public Date getStartDate() {
+
+    /**
+     * Gets start date.
+     *
+     * @return The start date of the exam.
+     */
+    public Date getStartDate() {
 		return startDate;
 	}
-	
-	/**
-	 * @param startDate A new start date.
-	 */
-	public void setStartDate(Date startDate) {
+
+    /**
+     * Sets start date.
+     *
+     * @param startDate A new start date.
+     */
+    public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	
-	/**
-	 * @return The end date of the exam.
-	 */
-	public Date getEndDate() {
+
+    /**
+     * Gets end date.
+     *
+     * @return The end date of the exam.
+     */
+    public Date getEndDate() {
 		return endDate;
 	}
-	
-	/**
-	 * @param endDate A new end date of the exam.
-	 */
-	public void setEndDate(Date endDate) {
+
+    /**
+     * Sets end date.
+     *
+     * @param endDate A new end date of the exam.
+     */
+    public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	
-	/**
-	 * @return The note/description of the exam.
-	 */
-	public String getNote() {
+
+    /**
+     * Gets note.
+     *
+     * @return The note/description of the exam.
+     */
+    public String getNote() {
 		return note;
 	}
-	
-	/**
-	 * @param note A new note/description of the exam.
-	 */
-	public void setNote(String note) {
+
+    /**
+     * Sets note.
+     *
+     * @param note A new note/description of the exam.
+     */
+    public void setNote(String note) {
 		this.note = note;
 	}
-	
-	/**
-	 * @return Credits(högskolepoäng) corresponding to the exam.
-	 */
-	public float getCredits() {
+
+    /**
+     * Gets credits.
+     *
+     * @return Credits(högskolepoäng) corresponding to the exam.
+     */
+    public float getCredits() {
 		return credits;
 	}
-	
-	/**
-	 * @param credits New amount of credits for the exam.
-	 */
-	public void setCredits(float credits) {
+
+    /**
+     * Sets credits.
+     *
+     * @param credits New amount of credits for the exam.
+     */
+    public void setCredits(float credits) {
 		this.credits = credits;
 	}
-	
-	/**
-	 * @return The class code of the course.
-	 */
-	public String getCourseCode() {
+
+    /**
+     * Gets course code.
+     *
+     * @return The class code of the course.
+     */
+    public String getCourseCode() {
 		return courseCode;
 	}
-	
-	
-	/**
-	 * @param courseCode A new course code.
-	 */
-	public void setCourseCode(String courseCode) {
+
+
+    /**
+     * Sets course code.
+     *
+     * @param courseCode A new course code.
+     */
+    public void setCourseCode(String courseCode) {
 		this.courseCode = courseCode;
 	}
 	

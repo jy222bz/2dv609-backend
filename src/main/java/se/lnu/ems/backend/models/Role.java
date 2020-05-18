@@ -8,7 +8,7 @@ import java.util.Date;
  *
  * @author Jacob Yousif
  * @version 1.0
- * @since 2020-05-01
+ * @since 2020 -05-01
  */
 @Entity
 @Table(name = "roles")
@@ -45,7 +45,7 @@ public class Role {
     /**
      * It returns the Id.
      *
-     * @return Long.
+     * @return Long. id
      */
     public Long getId() {
         return id;
@@ -63,7 +63,7 @@ public class Role {
     /**
      * It returns the date of creation.
      *
-     * @return Date.
+     * @return Date. created at
      */
     public Date getCreatedAt() {
         return createdAt;
@@ -81,7 +81,7 @@ public class Role {
     /**
      * It returns the date of the update.
      *
-     * @return Date.
+     * @return Date. updated at
      */
     public Date getUpdatedAt() {
         return updatedAt;
@@ -99,7 +99,7 @@ public class Role {
     /**
      * It returns the name of the role.
      *
-     * @return String.
+     * @return String. name
      */
     public String getName() {
         return name;
@@ -117,7 +117,7 @@ public class Role {
     /**
      * It returns the note.
      *
-     * @return String.
+     * @return String. note
      */
     public String getNote() {
         return note;

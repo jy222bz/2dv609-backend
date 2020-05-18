@@ -1,188 +1,212 @@
 package se.lnu.ems.backend.models;
 
+import javax.persistence.*;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 /**
- * @author Sirwan
+ * The type Question.
  *
+ * @author Sirwan
  */
 @Entity
 @Table(name = "questions")
 public class Question {
 
-	/**
-	 * ID
-	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	
-	/**
-	 * The type of question text or multi-choice 
-	 */
-	@Column(name = "type")
-	private int type;
-	
-	/**
-	 * The question's text
-	 */
-	@Column(name = "text")
-	private String text;
-	
-	/**
-	 * The date the question was created 
-	 */
-	@Column(name = "createdAt")
-	private Date createdAt;
-	
-	/**
-	 * The date the question was updated
-	 */
-	@Column(name = "updatedAt")
-	private Date updatedAt;
-	
-	/**
-	 * Description of the question
-	 */
-	@Column(name = "note")
-	private String note;
-	
-	/**
-	 * Which exam this question belongs
-	 */
-	private long exam_id;
+    /**
+     * ID
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	/**
-	 * Constructor 
-	 */
-	public Question() {
+    /**
+     * The type of question text or multi-choice
+     */
+    @Column()
+    private int type;
 
-	}
+    /**
+     * The question's text
+     */
+    @Column()
+    private String text;
 
-	/**
-	 * Constructor with args
-	 * 
-	 * @param id
-	 * @param type
-	 * @param text
-	 * @param createdAt
-	 * @param updatedAt
-	 * @param note
-	 * @param exam_id
-	 */
-	public Question(int type, String text, Date createdAt, Date updatedAt, String note, long exam_id) {
-		super();
-		this.type = type;
-		this.text = text;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
-		this.note = note;
-		this.exam_id= exam_id;
-	}
+    /**
+     * The date the question was created
+     */
+    @Column()
+    private Date createdAt;
 
-	/**
-	 * @return id
-	 */
-	public long getId() {
-		return id;
-	}
+    /**
+     * The date the question was updated
+     */
+    @Column()
+    private Date updatedAt;
 
-	/**
-	 * @param id
-	 */
-	public void setId(long id) {
-		this.id = id;
-	}
+    /**
+     * Description of the question
+     */
+    @Column()
+    private String note;
 
-	/**
-	 * @return the type of question
-	 */
-	public int getType() {
-		return type;
-	}
+    /**
+     * Which exam this question belongs
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "exam_id")
+    private Exam exam;
 
-	/**
-	 * @param type
-	 */
-	public void setType(int type) {
-		this.type = type;
-	}
+    /**
+     * Constructor
+     */
+    public Question() {
 
-	/**
-	 * @return text of the question
-	 */
-	public String getText() {
-		return text;
-	}
+    }
 
-	/**
-	 * @param text
-	 */
-	public void setText(String text) {
-		this.text = text;
-	}
+    /**
+     * Constructor with args
+     *
+     * @param type      the type
+     * @param text      the text
+     * @param createdAt the created at
+     * @param updatedAt the updated at
+     * @param note      the note
+     * @param exam      the exam
+     */
+    public Question(int type, String text, Date createdAt, Date updatedAt, String note, Exam exam) {
+        super();
+        this.type = type;
+        this.text = text;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.note = note;
+        this.exam = exam;
+    }
 
-	/**
-	 * @return the date in which the question was created
-	 */
-	public Date getCreatedAt() {
-		return createdAt;
-	}
+    /**
+     * Gets id.
+     *
+     * @return id id
+     */
+    public Long getId() {
+        return id;
+    }
 
-	/**
-	 * @param createdAt
-	 */
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	/**
-	 * @return the date in which the question was updated
-	 */
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
+    /**
+     * Gets type.
+     *
+     * @return the type of question
+     */
+    public int getType() {
+        return type;
+    }
 
-	/**
-	 * @param updatedAt
-	 */
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
+    /**
+     * Sets type.
+     *
+     * @param type the type
+     */
+    public void setType(int type) {
+        this.type = type;
+    }
 
-	/**
-	 * @return note about question
-	 */
-	public String getNote() {
-		return note;
-	}
+    /**
+     * Gets text.
+     *
+     * @return text of the question
+     */
+    public String getText() {
+        return text;
+    }
 
-	/**
-	 * @param note
-	 */
-	public void setNote(String note) {
-		this.note = note;
-	}
+    /**
+     * Sets text.
+     *
+     * @param text the text
+     */
+    public void setText(String text) {
+        this.text = text;
+    }
 
-	/**
-	 * @return exam_id which the question belongs to
-	 */
-	public long getExam_id() {
-		return exam_id;
-	}
+    /**
+     * Gets created at.
+     *
+     * @return the date in which the question was created
+     */
+    public Date getCreatedAt() {
+        return createdAt;
+    }
 
-	/**
-	 * @param exam_id
-	 */
-	public void setExam_id(long exam_id) {
-		this.exam_id = exam_id;
-	}
+    /**
+     * Sets created at.
+     *
+     * @param createdAt the created at
+     */
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
 
+    /**
+     * Gets updated at.
+     *
+     * @return the date in which the question was updated
+     */
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    /**
+     * Sets updated at.
+     *
+     * @param updatedAt the updated at
+     */
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    /**
+     * Gets note.
+     *
+     * @return note about question
+     */
+    public String getNote() {
+        return note;
+    }
+
+    /**
+     * Sets note.
+     *
+     * @param note the note
+     */
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+
+    /**
+     * Gets exam.
+     *
+     * @return the exam
+     */
+    public Exam getExam() {
+        return exam;
+    }
+
+    /**
+     * Sets exam.
+     *
+     * @param exam the exam
+     */
+    public void setExam(Exam exam) {
+        this.exam = exam;
+    }
 }

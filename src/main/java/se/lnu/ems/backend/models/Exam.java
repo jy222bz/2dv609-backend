@@ -8,17 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 /**
- * 
+ * The type Exam.
+ *
  * @author Hamza
- * @see EMS Design Document -> Figure 10
- * @since 2020-05-01
- * 
- * <p>
- * Implementation of the conceptual model according to the design of the exam component, see
- * Figure 10 in the EMS Design Document.
- * </p>
- * 
+ * @see EMSDesign Document -> Figure 10
+ * @since 2020 -05-01 <p> Implementation of the conceptual model according to the design of the exam component, see Figure 10 in the EMS Design Document. </p>
  */
 @Entity
 @Table(name = "exams")
@@ -31,115 +27,119 @@ public class Exam {
 	/**
 	 * The creation date of the exam. 
 	 */
-	@Column(name = "created_at")
+	@Column()
 	private Date createdAt;
 	
 	/**
 	 * The date when the exam can be started. The student can only do the exam
 	 */
-	@Column(nullable = false, name = "start_at")
-	private Date startDate;
+	@Column(nullable = false)
+	private Date startAt;
 	
 	/**
 	 * The date when the exam ends. After this date, the student can 
 	 * no longer do the exam.
 	 */
-	@Column(nullable = false, name = "end_at")
-	private Date endDate;
+	@Column(nullable = false)
+	private Date endAt;
 	
 	/**
 	 * The last update of the exam. Whenever a field in an exam updates, this field is
 	 * also updated to the current time stamp.
 	 */
-	@Column(nullable = false, name = "updated_at")
-	private Date lastUpdateDate;
+	@Column(nullable = false)
+	private Date updatedAt;
 	
 	/**
 	 *  The class code. For instance, 2DV609.
 	 */
-	@Column(nullable = false, name = "course_code", length = 32)
+	@Column(nullable = false, length = 32)
 	private String courseCode;
 	
 	/**
 	 *  Credits, also called högskolepoäng in swedish. 
 	 */
-	@Column(nullable = false, name = "credits")
+	@Column(nullable = false)
 	private float credits;
 	
 	/**
 	 * The title of the exam.
 	 */
-	@Column(nullable = false, length = 64, name = "title")
+	@Column(nullable = false)
 	private String title;
 	
 	/**
 	 * A note or description of the exam.
 	 */
-	@Column(name = "note")
+	@Column()
 	private String note;
-	
+
 	/**
 	 * Default constructor
 	 */
 	public Exam() {}
-	
+
 	/**
-	 * 
 	 * Constructor takes the fields that are nullable. When an exam is created these fields
 	 * must be assigned a value.
-	 * 
-	 * @param createdAt The current time stamp. 
-	 * @param startDate The date when the exam starts.
-	 * @param endDate The date when the exam ends.
-	 * @param credits Amount of credits the exam corresponds to.
+	 *
+	 * @param createdAt  The current time stamp.
+	 * @param startAt    The date when the exam starts.
+	 * @param endAt      The date when the exam ends.
+	 * @param credits    Amount of credits the exam corresponds to.
 	 * @param courseCode The course code.
 	 */
-	public Exam(Date createdAt, Date startDate, Date endDate, float credits, String courseCode) {
+	public Exam(Date createdAt, Date startAt, Date endAt, float credits, String courseCode) {
 		setCreatedAt(createdAt);
-		setStartDate(startDate);
-		setEndDate(endDate);
+		setStartAt(startAt);
+		setEndAt(endAt);
 		setCredits(credits);
 		setCourseCode(courseCode);
-		setLastUpdateDate(createdAt);
+		setUpdatedAt(createdAt);
 	}
-	
+
 	/**
-	 * 
 	 * Constructor takes all the fields.
-	 * 
-	 * @param createdAt The current time stamp. 
-	 * @param startDate The date when the exam starts.
-	 * @param endDate The date when the exam ends.
-	 * @param credits Amount of credits the exam corresponds to.
+	 *
+	 * @param createdAt  The current time stamp.
+	 * @param startAt    The date when the exam starts.
+	 * @param endAt      The date when the exam ends.
+	 * @param credits    Amount of credits the exam corresponds to.
 	 * @param courseCode The course code.
-	 * @param title The title of the exam
-	 * @param note Note or description of the exam.
+	 * @param title      The title of the exam
+	 * @param note       Note or description of the exam.
 	 */
-	public Exam(Date createdAt, Date startDate, Date endDate, float credits, String courseCode, String title, String note) {
-		this(createdAt, startDate, endDate, credits, courseCode);
+	public Exam(Date createdAt, Date startAt, Date endAt, float credits, String courseCode, String title, String note) {
+		this(createdAt, startAt, endAt, credits, courseCode);
 		setTitle(title);
 		setNote(note);
 	}
-	
-	
+
+
 	/**
+	 * Gets title.
+	 *
 	 * @return Title of the exam.
 	 */
 	public String getTitle() {
 		return title;
 	}
-	
-	
+
+
 	/**
+	 * Sets title.
+	 *
 	 * @param title A new title.
 	 */
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
-	
+
+
 	/**
-	 * @return Creation date of the exam. 
+	 * Gets created at.
+	 *
+	 * @return Creation date of the exam.
 	 */
 	public Date getCreatedAt() {
 		return createdAt;
@@ -151,97 +151,131 @@ public class Exam {
 	private void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
-	
+
 	/**
+	 * Gets start at.
+	 *
 	 * @return The start date of the exam.
 	 */
-	public Date getStartDate() {
-		return startDate;
+	public Date getStartAt() {
+		return startAt;
 	}
-	
+
 	/**
-	 * @param startDate A new start date.
+	 * Sets start at.
+	 *
+	 * @param startAt A new start date.
 	 */
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setStartAt(Date startAt) {
+		this.startAt = startAt;
 	}
-	
+
 	/**
+	 * Gets end at.
+	 *
 	 * @return The end date of the exam.
 	 */
-	public Date getEndDate() {
-		return endDate;
+	public Date getEndAt() {
+		return endAt;
 	}
-	
+
 	/**
-	 * @param endDate A new end date of the exam.
+	 * Sets end at.
+	 *
+	 * @param endAt A new end date of the exam.
 	 */
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+	public void setEndAt(Date endAt) {
+		this.endAt = endAt;
 	}
-	
+
 	/**
-	 * @return The last update date of the exam. 
+	 * Gets updated at.
+	 *
+	 * @return The last update date of the exam.
 	 */
-	public Date getLastUpdateDate() {
-		return lastUpdateDate;
+	public Date getUpdatedAt() {
+		return updatedAt;
 	}
-	
+
 	/**
-	 * @param lastUpdateDate A new last update date. Any change to the exam shall update the date.
+	 * Sets updated at.
+	 *
+	 * @param updatedAt A new last update date. Any change to the exam shall update the date.
 	 */
-	public void setLastUpdateDate(Date lastUpdateDate) {
-		this.lastUpdateDate = lastUpdateDate;
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
 	}
-	
+
 	/**
+	 * Gets note.
+	 *
 	 * @return The note/description of the exam.
 	 */
 	public String getNote() {
 		return note;
 	}
-	
+
 	/**
+	 * Sets note.
+	 *
 	 * @param note A new note/description of the exam.
 	 */
 	public void setNote(String note) {
 		this.note = note;
 	}
-	
+
 	/**
+	 * Gets credits.
+	 *
 	 * @return Credits(högskolepoäng) corresponding to the exam.
 	 */
 	public float getCredits() {
 		return credits;
 	}
-	
+
 	/**
+	 * Sets credits.
+	 *
 	 * @param credits New amount of credits for the exam.
 	 */
 	public void setCredits(float credits) {
 		this.credits = credits;
 	}
-	
+
 	/**
+	 * Gets course code.
+	 *
 	 * @return The class code of the course.
 	 */
 	public String getCourseCode() {
 		return courseCode;
 	}
-	
-	
+
+
 	/**
+	 * Sets course code.
+	 *
 	 * @param courseCode A new course code.
 	 */
 	public void setCourseCode(String courseCode) {
 		this.courseCode = courseCode;
 	}
-	
+
 	/**
-	 * @return the ID of the exam.
+	 * Gets id.
+	 *
+	 * @return the id
 	 */
-	public long getID() {
+	public Long getId() {
 		return id;
 	}
-	
+
+	/**
+	 * Sets id.
+	 *
+	 * @param id the id
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
 }

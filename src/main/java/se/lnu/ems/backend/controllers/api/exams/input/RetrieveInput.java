@@ -1,17 +1,16 @@
 package se.lnu.ems.backend.controllers.api.exams.input;
-import org.springframework.beans.factory.annotation.Required;
-import org.springframework.lang.NonNull;
+
 import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * A class for the retrieve input.
  *
  * @author Jacob Yousif
  * @version 1.0
- * @since 2020-05-01
+ * @since 2020 -05-01
  */
 public class RetrieveInput {
 
@@ -29,23 +28,21 @@ public class RetrieveInput {
     @Nullable
     private int pageSize;
 
-    @Min(0)
     @Nullable
-    private int id;
-    
-    @Nullable
+    @Size(max = 255)
     private String title;
-    
+
     @Nullable
     private String note;
-    
+
     @Nullable
+    @Size(max = 255)
     private String courseCode;
-   
+
     /**
      * It returns the page index.
      *
-     * @return int.
+     * @return int. page index
      */
     public int getPageIndex() {
         return pageIndex;
@@ -63,7 +60,7 @@ public class RetrieveInput {
     /**
      * It returns the page size.
      *
-     * @return int.
+     * @return int. page size
      */
     public int getPageSize() {
         return pageSize;
@@ -77,38 +74,60 @@ public class RetrieveInput {
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
     }
-    
-    public void setId(int id) {
-    	this.id = id;
-    }
-    
-    public int getId() {
-    	return id;
-    }
-    
+
+    /**
+     * Gets title.
+     *
+     * @return the title
+     */
     public String getTitle() {
-    	return title;
+        return title;
     }
-    
+
+    /**
+     * Sets title.
+     *
+     * @param title the title
+     */
     public void setTitle(String title) {
-    	this.title = title;
+        this.title = title;
     }
-    
+
+    /**
+     * Gets note.
+     *
+     * @return the note
+     */
     public String getNote() {
-    	return note;
+        return note;
     }
-    
+
+    /**
+     * Sets note.
+     *
+     * @param note the note
+     */
     public void setNote(String note) {
-    	this.note = note;
+        this.note = note;
     }
-    
+
+    /**
+     * Gets course code.
+     *
+     * @return the course code
+     */
     public String getCourseCode() {
-    	return courseCode;
+        return courseCode;
     }
-    
+
+    /**
+     * Sets course code.
+     *
+     * @param courseCode the course code
+     */
     public void setCourseCode(String courseCode) {
-    	this.courseCode = courseCode;
+        this.courseCode = courseCode;
     }
-    
-    
+
+
 }

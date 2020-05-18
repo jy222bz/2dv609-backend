@@ -9,7 +9,7 @@ import java.util.Date;
  *
  * @author Jacob Yousif
  * @version 1.0
- * @since 2020-05-01
+ * @since 2020 -05-01
  */
 public class UserManager {
 
@@ -27,7 +27,7 @@ public class UserManager {
     /**
      * It returns the instance of the UserFactory.
      *
-     * @return UserFactory
+     * @return UserFactory instance
      */
     public static UserManager getInstance() {
         if (userManager == null) {
@@ -42,7 +42,7 @@ public class UserManager {
      * @param input update input.
      * @param user  the user.
      * @param role  the role of the user.
-     * @return User
+     * @return User user
      */
     public User updateUser(UpdateInput input, User user, Role role) {
         user.setFirstName(input.getFirstName());

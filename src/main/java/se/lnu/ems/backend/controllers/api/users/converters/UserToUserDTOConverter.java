@@ -5,6 +5,9 @@ import org.springframework.stereotype.Component;
 import se.lnu.ems.backend.controllers.api.users.dto.UserDTO;
 import se.lnu.ems.backend.models.User;
 
+/**
+ * The type User to user dto converter.
+ */
 @Component
 public class UserToUserDTOConverter implements Converter<User, UserDTO> {
 

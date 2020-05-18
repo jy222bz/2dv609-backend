@@ -11,7 +11,7 @@ import se.lnu.ems.backend.controllers.api.users.dto.UserDTO;
 import se.lnu.ems.backend.controllers.api.users.input.CreateInput;
 import se.lnu.ems.backend.controllers.api.users.input.RetrieveInput;
 import se.lnu.ems.backend.controllers.api.users.input.UpdateInput;
-import se.lnu.ems.backend.errors.base.InputException;
+import se.lnu.ems.backend.errors.base.BadRequestException;
 import se.lnu.ems.backend.models.User;
 import se.lnu.ems.backend.services.roles.IRolesService;
 import se.lnu.ems.backend.services.users.IUsersService;
@@ -69,7 +69,7 @@ public class UsersController {
     @GetMapping("")
     public Object get(@Valid RetrieveInput input, BindingResult result) {
         if (result.hasErrors()) {
-            throw new InputException(result.getAllErrors());
+            throw new BadRequestException(result.getAllErrors());
         }
         List<User> users = usersService.retrieve(PageRequest.of(input.getPageIndex(), input.getPageSize()));
         return conversionService.convert(users,
@@ -89,7 +89,7 @@ public class UsersController {
     @ResponseStatus(HttpStatus.CREATED)
     public User create(@RequestBody @Valid CreateInput input, BindingResult result) {
         if (result.hasErrors()) {
-            throw new InputException(result.getAllErrors());
+            throw new BadRequestException(result.getAllErrors());
         }
         User user = conversionService.convert(input, User.class);
         if (user == null) {
@@ -110,14 +110,13 @@ public class UsersController {
     @PutMapping(value = "/{id}", consumes = "application/json")
     public Object update(@RequestBody @Valid UpdateInput input, BindingResult result, @PathVariable @Valid Long id) {
         if (result.hasErrors()) {
-            throw new InputException(result.getAllErrors());
+            throw new BadRequestException(result.getAllErrors());
         }
         User user = usersService.findById(id);
         user.setRole(rolesService.findById(input.getRoleId()));
 
         //User user = userManager.updateUser(input, user, );
-        usersService.update(user);
-        return user;
+        return usersService.update(user);
     }
 
     /**

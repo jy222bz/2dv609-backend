@@ -9,7 +9,7 @@ import java.util.Date;
  *
  * @author Jacob Yousif
  * @version 1.0
- * @since 2020-05-01
+ * @since 2020 -05-01
  */
 @Entity
 @Table(name = "users")
@@ -72,7 +72,7 @@ public class User {
     /**
      * It returns the identification of the user.
      *
-     * @return Long
+     * @return Long id
      */
     public Long getId() {
         return id;
@@ -90,7 +90,7 @@ public class User {
     /**
      * it returns the first name of the user.
      *
-     * @return String
+     * @return String first name
      */
     public String getFirstName() {
         return firstName;
@@ -108,7 +108,7 @@ public class User {
     /**
      * It returns the last name of the user.
      *
-     * @return String.
+     * @return String. last name
      */
     public String getLastName() {
         return lastName;
@@ -136,7 +136,7 @@ public class User {
     /**
      * It returns the date of the update.
      *
-     * @return Date.
+     * @return Date. updated at
      */
     public Date getUpdatedAt() {
         return updatedAt;
@@ -154,7 +154,7 @@ public class User {
     /**
      * It returns the time of the creation.
      *
-     * @return Date.
+     * @return Date. created at
      */
     public Date getCreatedAt() {
         return createdAt;
@@ -172,7 +172,7 @@ public class User {
     /**
      * It returns the note.
      *
-     * @return String.
+     * @return String. note
      */
     public String getNote() {
         return note;
@@ -190,7 +190,7 @@ public class User {
     /**
      * It returns the e-mail.
      *
-     * @return String.
+     * @return String. email
      */
     public String getEmail() {
         return email;
@@ -208,7 +208,7 @@ public class User {
     /**
      * It returns the password.
      *
-     * @return String.
+     * @return String. password
      */
     public String getPassword() {
         return password;
@@ -226,7 +226,7 @@ public class User {
     /**
      * It returns the role.
      *
-     * @return Role.
+     * @return Role. role
      */
     public Role getRole() {
         return role;

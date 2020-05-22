@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import se.lnu.ems.backend.controllers.api.questions.dto.QuestionDTO;
 import se.lnu.ems.backend.controllers.api.questions.input.CreateInput;
 import se.lnu.ems.backend.controllers.api.questions.input.RetrieveInput;
-import se.lnu.ems.backend.errors.base.BadRequestException;
+import se.lnu.ems.backend.errors.common.BadRequestException;
 import se.lnu.ems.backend.models.Question;
 import se.lnu.ems.backend.services.exams.IExamsService;
 import se.lnu.ems.backend.services.questions.IQuestionsService;

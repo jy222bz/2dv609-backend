@@ -11,7 +11,7 @@ import se.lnu.ems.backend.controllers.api.exams.dto.ExamDTO;
 import se.lnu.ems.backend.controllers.api.exams.input.CreateInput;
 import se.lnu.ems.backend.controllers.api.exams.input.RetrieveInput;
 import se.lnu.ems.backend.controllers.api.exams.input.UpdateInput;
-import se.lnu.ems.backend.errors.base.BadRequestException;
+import se.lnu.ems.backend.errors.common.BadRequestException;
 import se.lnu.ems.backend.models.Exam;
 import se.lnu.ems.backend.services.common.EntitySpecification;
 import se.lnu.ems.backend.services.exams.IExamsService;

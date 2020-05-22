@@ -1,8 +1,12 @@
+jwt:
+  secret: javainuse
+  validity: 18000
+
 logging:
   level:
-    .: error
-    org.springframework: ERROR
-    com.mkyong: ERROR
+    .: debug
+    org.springframework: debug
+    com.mkyong: error
 
 spring:
   profiles:

@@ -1,4 +1,4 @@
-package se.lnu.ems.backend.errors.base;
+package se.lnu.ems.backend.errors.common;
 
 import org.springframework.validation.ObjectError;
 import se.lnu.ems.backend.errors.BaseException;

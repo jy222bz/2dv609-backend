@@ -26,13 +26,32 @@ public enum Code {
      */
     ROLE_NOT_FOUND(-6000, "The role is not found!"),
 
-	/**
-	 * Exam not found
-	 */
-	EXAM_NOT_FOUND(-7000, "The exam does not exist."),
+    /**
+     * Exam not found
+     */
+    EXAM_NOT_FOUND(-7000, "The exam does not exist."),
 
+    /**
+     * The Question not found.
+     */
+    QUESTION_NOT_FOUND(-8000, "The question does not exist."),
 
-	QUESTION_NOT_FOUND(-8000, "The question does not exist.");
+    /**
+     * The Auth credentials invalid.
+     */
+    AUTH_CREDENTIALS_INVALID(-9000, "Invalid credentials provided"),
+
+    /**
+     * The Auth user disabled.
+     */
+    AUTH_USER_DISABLED(-9001, "User is disabled"),
+
+    /**
+     * The Auth unauthenticated.
+     */
+    AUTH_UNAUTHENTICATED(-9002, "User is unauthenticated"),
+
+    ;
 
     /**
      * A private field for the message.

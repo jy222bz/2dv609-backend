@@ -5,13 +5,14 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import se.lnu.ems.backend.controllers.api.users.dto.UserDTO;
 import se.lnu.ems.backend.controllers.api.users.input.CreateInput;
 import se.lnu.ems.backend.controllers.api.users.input.RetrieveInput;
 import se.lnu.ems.backend.controllers.api.users.input.UpdateInput;
-import se.lnu.ems.backend.errors.base.BadRequestException;
+import se.lnu.ems.backend.errors.common.BadRequestException;
 import se.lnu.ems.backend.models.User;
 import se.lnu.ems.backend.services.roles.IRolesService;
 import se.lnu.ems.backend.services.users.IUsersService;
@@ -46,6 +47,9 @@ public class UsersController {
      */
     private final ConversionService conversionService;
 
+
+    private final PasswordEncoder passwordEncoder;
+
     /**
      * A constructor, to construct an object.
      *
@@ -53,10 +57,13 @@ public class UsersController {
      * @param rolesService      the roles service.
      * @param conversionService the conversion service.
      */
-    public UsersController(IUsersService usersService, IRolesService rolesService, ConversionService conversionService) {
+    public UsersController(IUsersService usersService, IRolesService rolesService, ConversionService conversionService,
+                           PasswordEncoder passwordEncoder
+                           ) {
         this.usersService = usersService;
         this.rolesService = rolesService;
         this.conversionService = conversionService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     /**
@@ -95,6 +102,7 @@ public class UsersController {
         if (user == null) {
             throw new UserNotCreatedException();
         }
+        user.setPassword(passwordEncoder.encode(input.getPassword()));
         user.setRole(rolesService.findById(input.getRoleId()));
         return usersService.create(user);
     }

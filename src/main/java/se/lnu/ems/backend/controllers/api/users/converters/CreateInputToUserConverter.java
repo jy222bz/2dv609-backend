@@ -29,7 +29,6 @@ public class CreateInputToUserConverter implements Converter<CreateInput, User> 
         user.setFirstName(input.getFirstName());
         user.setLastName(input.getLastName());
         user.setEmail(input.getEmail());
-        user.setPassword(input.getPassword());
         user.setCreatedAt(new Date());
         user.setUpdatedAt(new Date());
         user.setNote(input.getNote());

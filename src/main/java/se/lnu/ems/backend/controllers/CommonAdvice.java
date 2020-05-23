@@ -22,6 +22,7 @@ public class CommonAdvice {
      */
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<Error> badRequest(final BadRequestException e) {
-        return new ResponseEntity<>(new Error(e.getCode(), e.getMessage(), e.getErrorList()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new Error(e.getCode(), e.getMessage(), e.getErrorList()),
+                HttpStatus.BAD_REQUEST);
     }
 }

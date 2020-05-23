@@ -135,7 +135,7 @@ public class UsersController {
      *
      * @param id the id
      */
-    @DeleteMapping(value = "/{id}", consumes = "application/json")
+    @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable @Valid Long id) {
         usersService.delete(usersService.findById(id));

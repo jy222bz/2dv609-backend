@@ -14,7 +14,7 @@ public class LoginInput {
     private String email;
 
     @NotNull
-    @Size(min = 3, max = 255)
+    @Size(min = 5, max = 255)
     private String password;
 
     /**

@@ -23,7 +23,7 @@ public class CreateInput {
      */
     @NotNull
     @NotEmpty()
-    @Size(min = 8, max = 255)
+    @Size(min = 5, max = 255)
     private String password;
 
     /**

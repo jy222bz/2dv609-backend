@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import se.lnu.ems.backend.models.User;
 import se.lnu.ems.backend.repositories.UsersRepository;
 import se.lnu.ems.backend.services.common.EntitySpecification;
+import se.lnu.ems.backend.services.users.exceptions.UserAlreadyExistsException;
 import se.lnu.ems.backend.services.users.exceptions.UserNotFoundException;
 
 /**
@@ -55,6 +56,11 @@ public class UsersServiceImpl implements IUsersService {
         return usersRepository.findById(id).orElseThrow(UserNotFoundException::new);
     }
 
+    @Override
+    public User findByEmail(String email) {
+        return usersRepository.findByEmail(email);
+    }
+
     /**
      * It creates the user in the repository.
      *
@@ -63,6 +69,10 @@ public class UsersServiceImpl implements IUsersService {
      */
     @Override
     public User create(User user) {
+        // check if email is already exists
+        if (usersRepository.findByEmail(user.getEmail()) != null) {
+            throw new UserAlreadyExistsException();
+        }
         return usersRepository.save(user);
     }
 

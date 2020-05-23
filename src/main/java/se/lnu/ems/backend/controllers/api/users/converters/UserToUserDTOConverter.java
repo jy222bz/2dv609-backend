@@ -20,6 +20,8 @@ public class UserToUserDTOConverter implements Converter<User, UserDTO> {
         userDTO.setCreatedAt(user.getCreatedAt());
         userDTO.setUpdatedAt(user.getUpdatedAt());
         userDTO.setEmail(user.getEmail());
+        userDTO.setRoleId(user.getRole().getId());
+        userDTO.setRoleName(user.getRole().getName());
         return userDTO;
     }
 }

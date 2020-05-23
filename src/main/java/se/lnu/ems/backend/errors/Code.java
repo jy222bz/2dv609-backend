@@ -21,6 +21,12 @@ public enum Code {
      * The User could not be created.
      */
     USER_COULD_NOT_BE_CREATED(-5001, "The user could not created!"),
+
+    /**
+     * The User already exists.
+     */
+    USER_ALREADY_EXISTS(-5002, "The user already exits!"),
+
     /**
      * The Role not found.
      */

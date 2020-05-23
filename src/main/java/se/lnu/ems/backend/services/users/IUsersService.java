@@ -30,6 +30,8 @@ public interface IUsersService {
      */
     User findById(Long id);
 
+    User findByEmail(String email);
+
     /**
      * It creates the user in the repository.
      *

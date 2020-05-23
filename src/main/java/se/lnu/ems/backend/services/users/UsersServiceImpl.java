@@ -1,13 +1,12 @@
 package se.lnu.ems.backend.services.users;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import se.lnu.ems.backend.models.User;
 import se.lnu.ems.backend.repositories.UsersRepository;
+import se.lnu.ems.backend.services.common.EntitySpecification;
 import se.lnu.ems.backend.services.users.exceptions.UserNotFoundException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A class for the Users Service.
@@ -36,14 +35,13 @@ public class UsersServiceImpl implements IUsersService {
     /**
      * It retrieves and returns the users.
      *
-     * @param pageable pageable.
-     * @return List<User>
+     * @param pageable      pageable.
+     * @param specification the specification
+     * @return List<User> page
      */
     @Override
-    public List<User> retrieve(Pageable pageable) {
-        var list = new ArrayList<User>();
-        usersRepository.findAll(pageable).forEach(list::add);
-        return list;
+    public Page<User> retrieve(EntitySpecification<User> specification, Pageable pageable) {
+        return usersRepository.findAll(specification, pageable);
     }
 
     /**

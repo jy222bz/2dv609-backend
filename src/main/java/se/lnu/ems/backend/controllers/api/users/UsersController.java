@@ -2,7 +2,7 @@ package se.lnu.ems.backend.controllers.api.users;
 
 
 import org.springframework.core.convert.ConversionService;
-import org.springframework.core.convert.TypeDescriptor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,12 +14,14 @@ import se.lnu.ems.backend.controllers.api.users.input.RetrieveInput;
 import se.lnu.ems.backend.controllers.api.users.input.UpdateInput;
 import se.lnu.ems.backend.errors.common.BadRequestException;
 import se.lnu.ems.backend.models.User;
+import se.lnu.ems.backend.services.common.EntitySpecification;
+import se.lnu.ems.backend.services.common.search.SearchCriteria;
+import se.lnu.ems.backend.services.common.search.SearchOperation;
 import se.lnu.ems.backend.services.roles.IRolesService;
 import se.lnu.ems.backend.services.users.IUsersService;
 import se.lnu.ems.backend.services.users.exceptions.UserNotCreatedException;
 
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * A class for the users controller.
@@ -59,7 +61,7 @@ public class UsersController {
      */
     public UsersController(IUsersService usersService, IRolesService rolesService, ConversionService conversionService,
                            PasswordEncoder passwordEncoder
-                           ) {
+    ) {
         this.usersService = usersService;
         this.rolesService = rolesService;
         this.conversionService = conversionService;
@@ -74,15 +76,15 @@ public class UsersController {
      * @return Object. object
      */
     @GetMapping("")
-    public Object get(@Valid RetrieveInput input, BindingResult result) {
+    public Page<UserDTO> get(@Valid RetrieveInput input, BindingResult result) {
         if (result.hasErrors()) {
             throw new BadRequestException(result.getAllErrors());
         }
-        List<User> users = usersService.retrieve(PageRequest.of(input.getPageIndex(), input.getPageSize()));
-        return conversionService.convert(users,
-                TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(User.class)),
-                TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(UserDTO.class))
-        );
+        EntitySpecification<User> specification = new EntitySpecification<>();
+        specification.addIfValueNotEmpty(new SearchCriteria("firstName", input.getFilterValue(), SearchOperation.MATCH));
+        specification.addIfValueNotEmpty(new SearchCriteria("lastName", input.getFilterValue(), SearchOperation.MATCH));
+        return usersService.retrieve(specification, PageRequest.of(input.getPageIndex(), input.getPageSize()))
+                .map(user -> conversionService.convert(user, UserDTO.class));
     }
 
     /**

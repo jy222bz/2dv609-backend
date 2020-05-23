@@ -1,5 +1,6 @@
 package se.lnu.ems.backend.repositories;
 
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import se.lnu.ems.backend.models.User;
@@ -11,7 +12,7 @@ import se.lnu.ems.backend.models.User;
  * @version 1.0
  * @since 2020-05-01
  */
-public interface UsersRepository extends PagingAndSortingRepository<User, Long> {
+public interface UsersRepository extends PagingAndSortingRepository<User, Long>, JpaSpecificationExecutor<User> {
     @Query(value = "SELECT * FROM users WHERE email = ?1 limit 1", nativeQuery = true)
     User findByEmail(String email);
 }

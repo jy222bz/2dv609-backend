@@ -4,8 +4,8 @@ jwt:
 
 logging:
   level:
-    .: debug
-    org.springframework: debug
+    .: error
+    org.springframework: error
     com.mkyong: error
 
 spring:

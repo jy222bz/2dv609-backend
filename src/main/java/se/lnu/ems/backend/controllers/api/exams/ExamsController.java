@@ -1,7 +1,6 @@
 package se.lnu.ems.backend.controllers.api.exams;
 
 import org.springframework.core.convert.ConversionService;
-import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,13 +13,12 @@ import se.lnu.ems.backend.controllers.api.exams.input.UpdateInput;
 import se.lnu.ems.backend.errors.common.BadRequestException;
 import se.lnu.ems.backend.models.Exam;
 import se.lnu.ems.backend.services.common.EntitySpecification;
-import se.lnu.ems.backend.services.exams.IExamsService;
 import se.lnu.ems.backend.services.common.search.SearchCriteria;
 import se.lnu.ems.backend.services.common.search.SearchOperation;
+import se.lnu.ems.backend.services.exams.IExamsService;
 
 import javax.validation.Valid;
 import java.util.Date;
-import java.util.List;
 
 /**
  * RestController for the exam component.
@@ -73,14 +71,11 @@ public class ExamsController {
             throw new BadRequestException(result.getAllErrors());
         }
         EntitySpecification<Exam> specification = new EntitySpecification<>();
-        specification.addIfValueNotEmpty(new SearchCriteria("title", input.getTitle(), SearchOperation.MATCH));
+        specification.addIfValueNotEmpty(new SearchCriteria("title", input.getFilterValue(), SearchOperation.MATCH));
         specification.addIfValueNotEmpty(new SearchCriteria("courseCode", input.getCourseCode(), SearchOperation.MATCH));
         specification.addIfValueNotEmpty(new SearchCriteria("note", input.getNote(), SearchOperation.MATCH));
-        List<Exam> exams = examsService.retrieve(PageRequest.of(input.getPageIndex(), input.getPageSize()), specification);
-        return conversionService.convert(exams,
-                TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(Exam.class)),
-                TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(ExamDTO.class))
-        );
+        return examsService.retrieve(specification, PageRequest.of(input.getPageIndex(), input.getPageSize()))
+                .map(exam -> conversionService.convert(exam, ExamDTO.class));
     }
 
 

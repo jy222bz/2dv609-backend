@@ -20,6 +20,7 @@ public class ExamToExamDTOConverter implements Converter<Exam, ExamDTO> {
         examDTO.setEndAt(exam.getEndAt());
         examDTO.setStartAt(exam.getStartAt());
         examDTO.setCreatedAt(exam.getCreatedAt());
+        examDTO.setCourseCode(exam.getCourseCode());
         return examDTO;
     }
 }

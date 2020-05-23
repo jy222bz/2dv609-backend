@@ -12,6 +12,7 @@ public class ExamDTO {
     private Date startAt;
     private Date endAt;
     private Date createdAt;
+    private String courseCode;
 
 
     /**
@@ -120,5 +121,13 @@ public class ExamDTO {
      */
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
     }
 }

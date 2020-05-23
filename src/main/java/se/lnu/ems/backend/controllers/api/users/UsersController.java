@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import se.lnu.ems.backend.controllers.api.users.dto.UserDTO;
 import se.lnu.ems.backend.controllers.api.users.input.CreateInput;
+import se.lnu.ems.backend.controllers.api.users.input.PasswordInput;
 import se.lnu.ems.backend.controllers.api.users.input.RetrieveInput;
 import se.lnu.ems.backend.controllers.api.users.input.UpdateInput;
 import se.lnu.ems.backend.errors.common.BadRequestException;
@@ -129,6 +130,16 @@ public class UsersController {
         user.setFirstName(input.getFirstName());
         user.setLastName(input.getLastName());
         user.setNote(input.getNote());
+        return conversionService.convert(usersService.update(user), UserDTO.class);
+    }
+
+    @PutMapping(value = "/{id}/password", consumes = "application/json")
+    public Object updatePassword(@RequestBody @Valid PasswordInput input, BindingResult result, @PathVariable @Valid Long id) {
+        if (result.hasErrors()) {
+            throw new BadRequestException(result.getAllErrors());
+        }
+        User user = usersService.findById(id);
+        user.setPassword(passwordEncoder.encode(input.getPassword()));
         return conversionService.convert(usersService.update(user), UserDTO.class);
     }
 

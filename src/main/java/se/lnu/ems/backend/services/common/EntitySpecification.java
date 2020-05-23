@@ -16,6 +16,22 @@ import java.util.List;
  * @param <T> the type parameter
  */
 public class EntitySpecification<T> implements org.springframework.data.jpa.domain.Specification<T> {
+    /**
+     * The enum Criteria type.
+     */
+    public enum Operator {
+        /**
+         * And criteria type.
+         */
+        AND,
+        /**
+         * Or criteria type.
+         */
+        OR
+    }
+
+    private Operator operator = Operator.AND;
+
     private final List<SearchCriteria> list = new ArrayList<>();
 
     /**
@@ -28,6 +44,15 @@ public class EntitySpecification<T> implements org.springframework.data.jpa.doma
     }
 
     /**
+     * Sets criteria type.
+     *
+     * @param operator the criteria type
+     */
+    public void setOperator(Operator operator) {
+        this.operator = operator;
+    }
+
+    /**
      * Add if value not empty.
      *
      * @param criteria the criteria
@@ -36,15 +61,28 @@ public class EntitySpecification<T> implements org.springframework.data.jpa.doma
         if ((criteria.getValue() == null) || ((criteria.getValue() instanceof String) && ((String) criteria.getValue()).isEmpty())) {
             return;
         }
-        list.add(criteria);
+        this.add(criteria);
     }
 
     @Override
     public Predicate toPredicate(Root<T> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder builder) {
-        //create a new predicate list
-        List<Predicate> predicates = new ArrayList<>();
+        // return if empty
+        if (list.isEmpty()) {
+            return builder.and();
+        }
 
         //add criteria to predicates
+        List<Predicate> predicates = toPredicates(root, builder);
+
+        if (operator == Operator.AND) {
+            return builder.and(predicates.toArray(new Predicate[0]));
+        } else {
+            return builder.or(predicates.toArray(new Predicate[0]));
+        }
+    }
+
+    private List<Predicate> toPredicates(Root<T> root, CriteriaBuilder builder) {
+        List<Predicate> predicates = new ArrayList<>();
         for (SearchCriteria criteria : list) {
             if (criteria.getOperation().equals(SearchOperation.GREATER_THAN)) {
                 predicates.add(builder.greaterThan(
@@ -82,7 +120,6 @@ public class EntitySpecification<T> implements org.springframework.data.jpa.doma
                 predicates.add(builder.not(root.get(criteria.getKey())).in(criteria.getValue()));
             }
         }
-
-        return builder.and(predicates.toArray(new Predicate[0]));
+        return predicates;
     }
 }

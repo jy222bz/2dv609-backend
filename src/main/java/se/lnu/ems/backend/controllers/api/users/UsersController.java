@@ -81,6 +81,7 @@ public class UsersController {
             throw new BadRequestException(result.getAllErrors());
         }
         EntitySpecification<User> specification = new EntitySpecification<>();
+        specification.setOperator(EntitySpecification.Operator.OR);
         specification.addIfValueNotEmpty(new SearchCriteria("firstName", input.getFilterValue(), SearchOperation.MATCH));
         specification.addIfValueNotEmpty(new SearchCriteria("lastName", input.getFilterValue(), SearchOperation.MATCH));
         return usersService.retrieve(specification, PageRequest.of(input.getPageIndex(), input.getPageSize()))

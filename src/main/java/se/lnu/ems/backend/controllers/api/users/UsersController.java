@@ -125,9 +125,11 @@ public class UsersController {
         }
         User user = usersService.findById(id);
         user.setRole(rolesService.findById(input.getRoleId()));
-
-        //User user = userManager.updateUser(input, user, );
-        return usersService.update(user);
+        user.setEmail(input.getEmail());
+        user.setFirstName(input.getFirstName());
+        user.setLastName(input.getLastName());
+        user.setNote(input.getNote());
+        return conversionService.convert(usersService.update(user), UserDTO.class);
     }
 
     /**

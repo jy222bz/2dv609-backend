@@ -80,6 +80,7 @@ public class QuestionsController {
         Exam exam = examsService.findById(examId);
         EntitySpecification<Question> specification = new EntitySpecification<>();
         specification.addIfValueNotEmpty(new SearchCriteria("exam", exam, SearchOperation.EQUAL));
+        specification.addIfValueNotEmpty(new SearchCriteria("text", input.getFilterValue(), SearchOperation.MATCH));
         return questionsService.retrieve(specification, PageRequest.of(input.getPageIndex(), input.getPageSize()))
                 .map(question -> conversionService.convert(question, QuestionDTO.class));
     }

@@ -1,28 +1,25 @@
 package se.lnu.ems.backend.services.questions;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import se.lnu.ems.backend.models.Question;
 import se.lnu.ems.backend.repositories.QuestionsRepository;
+import se.lnu.ems.backend.services.common.EntitySpecification;
 import se.lnu.ems.backend.services.questions.exceptions.QuestionNotFoundException;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
-public class QuestionsService implements IQuestionsService {
+public class QuestionsServiceImpl implements IQuestionsService {
 
     private final QuestionsRepository questionsRepository;
 
-    public QuestionsService(QuestionsRepository questionsRepository) {
+    public QuestionsServiceImpl(QuestionsRepository questionsRepository) {
         this.questionsRepository = questionsRepository;
     }
 
     @Override
-    public List<Question> retrieve(Pageable pageable) {
-        List<Question> questions = new ArrayList<>();
-        questionsRepository.findAll().forEach(questions::add);
-        return questions;
+    public Page<Question> retrieve(EntitySpecification<Question> specification, Pageable pageable) {
+        return questionsRepository.findAll(specification, pageable);
     }
 
     @Override

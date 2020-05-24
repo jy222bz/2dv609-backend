@@ -1,6 +1,5 @@
 package se.lnu.ems.backend.services.roles;
 
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import se.lnu.ems.backend.models.Role;
 import se.lnu.ems.backend.repositories.RolesRepository;
@@ -36,13 +35,12 @@ public class RolesServiceImpl implements IRolesService {
     /**
      * It retrieves the roles.
      *
-     * @param pageable pageable.
      * @return List<Role>
      */
     @Override
-    public List<Role> retrieve(Pageable pageable) {
+    public List<Role> retrieve() {
         var list = new ArrayList<Role>();
-        rolesRepository.findAll(pageable).forEach(list::add);
+        rolesRepository.findAll().forEach(list::add);
         return list;
     }
 

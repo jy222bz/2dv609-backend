@@ -61,6 +61,8 @@ public enum Code {
      */
     AUTH_UNAUTHENTICATED(-9002, "User is unauthenticated"),
 
+    QUESTION_TYPE_NOT_FOUND(-10000, "The question type is not found!"),
+
     ;
 
     /**

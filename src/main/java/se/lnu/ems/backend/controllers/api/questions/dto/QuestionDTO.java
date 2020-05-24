@@ -12,6 +12,8 @@ public class QuestionDTO {
     private Date startAt;
     private Date endAt;
     private Date createdAt;
+    private Long examId;
+    private String typeName;
 
 
     /**
@@ -110,5 +112,21 @@ public class QuestionDTO {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Long getExamId() {
+        return examId;
+    }
+
+    public void setExamId(Long examId) {
+        this.examId = examId;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 }

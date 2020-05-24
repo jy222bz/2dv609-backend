@@ -10,9 +10,15 @@ import se.lnu.ems.backend.models.User;
  *
  * @author Jacob Yousif
  * @version 1.0
- * @since 2020-05-01
+ * @since 2020 -05-01
  */
 public interface UsersRepository extends PagingAndSortingRepository<User, Long>, JpaSpecificationExecutor<User> {
+    /**
+     * Find by email user.
+     *
+     * @param email the email
+     * @return the user
+     */
     @Query(value = "SELECT * FROM users WHERE email = ?1 limit 1", nativeQuery = true)
     User findByEmail(String email);
 }

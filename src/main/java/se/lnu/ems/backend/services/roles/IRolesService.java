@@ -16,10 +16,9 @@ public interface IRolesService {
     /**
      * It retrieves the roles.
      *
-     * @param pageable pageable.
-     * @return List<Role> list
+     * @return List<Role>  list
      */
-    List<Role> retrieve(Pageable pageable);
+    List<Role> retrieve();
 
     /**
      * It finds the role by the id.

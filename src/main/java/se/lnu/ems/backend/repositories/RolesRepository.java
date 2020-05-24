@@ -8,7 +8,7 @@ import se.lnu.ems.backend.models.Role;
  *
  * @author Jacob Yousif
  * @version 1.0
- * @since 2020-05-01
+ * @since 2020 -05-01
  */
 public interface RolesRepository extends PagingAndSortingRepository<Role, Long> {
 

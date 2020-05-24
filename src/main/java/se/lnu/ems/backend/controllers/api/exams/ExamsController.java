@@ -146,7 +146,7 @@ public class ExamsController {
      * @param id The id of the exam
      * @implNote There were some problems sending DELETE requests, hence the request method and response body annotation.
      */
-    @DeleteMapping(value = "/{id}", consumes = "application/json")
+    @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteExam(@PathVariable long id) {
         examsService.delete(examsService.findById(id));

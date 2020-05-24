@@ -113,30 +113,29 @@ public class ExamsController {
     @PutMapping(value = "/{id}", consumes = "application/json")
     public Object update(@RequestBody @Valid UpdateInput input, BindingResult result, @PathVariable("id") @Valid long id) {
         if (result.hasErrors()) {
-            throw new BadRequestException("Unable to update exam.");
+            throw new BadRequestException("Unable to update exam.", result.getAllErrors());
         }
-        // Temporary solution
-        // Revise
         Exam exam = examsService.findById(id);
-
+        if (input.getTitle() != null) {
+            exam.setTitle(input.getTitle());
+        }
         if (input.getCourseCode() != null) {
             exam.setCourseCode(input.getCourseCode());
         }
-        exam.setCredits(input.getCredits());
-        if (input.getEndDate() != null) {
-            exam.setEndAt(input.getEndDate());
+        if (input.getCredits() != null) {
+            exam.setCredits(input.getCredits());
         }
-        if (input.getStartDate() != null) {
-            exam.setStartAt(input.getStartDate());
+        if (input.getStartAt() != null) {
+            exam.setStartAt(input.getStartAt());
         }
-        if (input.getTitle() != null) {
-            exam.setTitle(input.getTitle());
+        if (input.getEndAt() != null) {
+            exam.setEndAt(input.getEndAt());
         }
         if (input.getNote() != null) {
             exam.setNote(input.getNote());
         }
         exam.setUpdatedAt(new Date());
-        return examsService.update(exam);
+        return conversionService.convert(examsService.update(exam), ExamDTO.class);
     }
 
     /**

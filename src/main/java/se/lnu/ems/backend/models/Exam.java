@@ -148,7 +148,7 @@ public class Exam {
 	/**
 	 * @param createdAt A new creation date. 
 	 */
-	private void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
 

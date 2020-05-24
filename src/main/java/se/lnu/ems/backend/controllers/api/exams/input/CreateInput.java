@@ -13,7 +13,7 @@ public class CreateInput {
      */
     @NotNull
     @Future
-    private Date startDate;
+    private Date startAt;
 
     /**
      * The date when the exam ends. After this date, the student can
@@ -21,7 +21,7 @@ public class CreateInput {
      */
     @NotNull
     @Future
-    private Date endDate;
+    private Date endAt;
 
     /**
      * The class code. For instance, 2DV609.
@@ -49,8 +49,6 @@ public class CreateInput {
     /**
      * A note or description of the exam.
      */
-    @NotNull
-    @Size(min = 1, max = 255)
     private String note;
 
     /**
@@ -77,17 +75,17 @@ public class CreateInput {
      *
      * @return The start date of the exam.
      */
-    public Date getStartDate() {
-        return startDate;
+    public Date getStartAt() {
+        return startAt;
     }
 
     /**
      * Sets start date.
      *
-     * @param startDate A new start date.
+     * @param startAt A new start date.
      */
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setStartAt(Date startAt) {
+        this.startAt = startAt;
     }
 
     /**
@@ -95,17 +93,17 @@ public class CreateInput {
      *
      * @return The end date of the exam.
      */
-    public Date getEndDate() {
-        return endDate;
+    public Date getEndAt() {
+        return endAt;
     }
 
     /**
      * Sets end date.
      *
-     * @param endDate A new end date of the exam.
+     * @param endAt A new end date of the exam.
      */
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setEndAt(Date endAt) {
+        this.endAt = endAt;
     }
 
     /**

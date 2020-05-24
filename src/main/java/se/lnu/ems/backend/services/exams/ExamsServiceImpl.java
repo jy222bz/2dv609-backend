@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import se.lnu.ems.backend.models.Exam;
 import se.lnu.ems.backend.repositories.ExamsRepository;
 import se.lnu.ems.backend.services.common.EntitySpecification;
+import se.lnu.ems.backend.services.exams.exceptions.ExamInvalidEndDateException;
 import se.lnu.ems.backend.services.exams.exceptions.ExamNotFoundException;
 
 /**
@@ -53,6 +54,10 @@ public class ExamsServiceImpl implements IExamsService {
      */
     @Override
     public Exam create(Exam exam) {
+        // check dates
+        if (exam.getEndAt().getTime() < exam.getStartAt().getTime()) {
+            throw new ExamInvalidEndDateException();
+        }
         return examsRepository.save(exam);
     }
 

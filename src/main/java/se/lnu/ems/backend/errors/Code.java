@@ -36,6 +36,10 @@ public enum Code {
      * Exam not found
      */
     EXAM_NOT_FOUND(-7000, "The exam does not exist."),
+    /**
+     * The Exam end date invalid.
+     */
+    EXAM_END_DATE_INVALID(-7001, "The exam has an invalid end date."),
 
     /**
      * The Question not found.

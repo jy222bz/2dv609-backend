@@ -92,7 +92,7 @@ public class ExamsController {
     @PostMapping(produces = "application/json", consumes = "application/json")
     public ResponseEntity<Exam> create(@RequestBody @Valid CreateInput input, BindingResult result) {
         if (result.hasErrors()) {
-            throw new BadRequestException("Input values are invalid.");
+            throw new BadRequestException("Input values are invalid.", result.getAllErrors());
         }
         Exam exam = examsService.create(conversionService.convert(input, Exam.class));
         return ResponseEntity.accepted().body(exam);

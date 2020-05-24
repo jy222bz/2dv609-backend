@@ -8,11 +8,19 @@ import se.lnu.ems.backend.repositories.QuestionsRepository;
 import se.lnu.ems.backend.services.common.EntitySpecification;
 import se.lnu.ems.backend.services.questions.exceptions.QuestionNotFoundException;
 
+/**
+ * The type Questions service.
+ */
 @Service
 public class QuestionsServiceImpl implements IQuestionsService {
 
     private final QuestionsRepository questionsRepository;
 
+    /**
+     * Instantiates a new Questions service.
+     *
+     * @param questionsRepository the questions repository
+     */
     public QuestionsServiceImpl(QuestionsRepository questionsRepository) {
         this.questionsRepository = questionsRepository;
     }

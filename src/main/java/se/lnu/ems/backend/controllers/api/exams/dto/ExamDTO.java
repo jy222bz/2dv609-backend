@@ -13,7 +13,7 @@ public class ExamDTO {
     private Date endAt;
     private Date createdAt;
     private String courseCode;
-
+    private float credits;
 
     /**
      * Gets id.
@@ -129,5 +129,13 @@ public class ExamDTO {
 
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
+    }
+
+    public float getCredits() {
+        return credits;
+    }
+
+    public void setCredits(float credits) {
+        this.credits = credits;
     }
 }

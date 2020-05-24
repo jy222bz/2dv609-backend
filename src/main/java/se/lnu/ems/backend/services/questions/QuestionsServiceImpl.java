@@ -49,4 +49,9 @@ public class QuestionsServiceImpl implements IQuestionsService {
     public void delete(Question question) {
         questionsRepository.delete(question);
     }
+
+    @Override
+    public long count(EntitySpecification<Question> specification) {
+        return questionsRepository.count(specification);
+    }
 }

@@ -48,4 +48,12 @@ public interface IQuestionsService {
      * @param question the question
      */
     void delete(Question question);
+
+    /**
+     * Count long.
+     *
+     * @param specification the specification
+     * @return the long
+     */
+    long count(EntitySpecification<Question> specification);
 }

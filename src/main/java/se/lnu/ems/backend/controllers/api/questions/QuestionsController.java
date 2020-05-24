@@ -85,6 +85,14 @@ public class QuestionsController {
                 .map(question -> conversionService.convert(question, QuestionDTO.class));
     }
 
+    @GetMapping("/count")
+    public Object deleteQuestion(@Valid @PathVariable long examId) {
+        Exam exam = examsService.findById(examId);
+        EntitySpecification<Question> specification = new EntitySpecification<>();
+        specification.addIfValueNotEmpty(new SearchCriteria("exam", exam, SearchOperation.EQUAL));
+        return questionsService.count(specification);
+    }
+
     /**
      * method to return a question which has a specific id.
      *

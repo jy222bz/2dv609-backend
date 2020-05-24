@@ -20,14 +20,6 @@ public class UpdateInput {
     private String email;
 
     /**
-     * A private field for the password.
-     */
-    @NotNull
-    @NotEmpty()
-    @Size(min = 8, max = 255)
-    private String password;
-
-    /**
      * A private field for the first name.
      */
     @NotNull
@@ -89,24 +81,6 @@ public class UpdateInput {
      */
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    /**
-     * It returns the password.
-     *
-     * @return String. password
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * It sets the password.
-     *
-     * @param password the password.
-     */
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     /**

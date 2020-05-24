@@ -28,6 +28,8 @@ public class RetrieveInput {
     @Min(1)
     private int pageSize;
 
+    private String filterValue;
+
     /**
      * It returns the page index.
      *
@@ -62,5 +64,13 @@ public class RetrieveInput {
      */
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
+    }
+
+    public String getFilterValue() {
+        return filterValue;
+    }
+
+    public void setFilterValue(String filterValue) {
+        this.filterValue = filterValue;
     }
 }

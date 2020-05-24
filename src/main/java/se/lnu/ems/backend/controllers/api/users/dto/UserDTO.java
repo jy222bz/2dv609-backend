@@ -12,6 +12,8 @@ public class UserDTO {
     private String email;
     private Date createdAt;
     private Date updatedAt;
+    private Long roleId;
+    private String roleName;
 
 
     /**
@@ -90,5 +92,21 @@ public class UserDTO {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Long getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }

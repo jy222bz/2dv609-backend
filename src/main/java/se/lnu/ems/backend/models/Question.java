@@ -20,12 +20,6 @@ public class Question {
     private Long id;
 
     /**
-     * The type of question text or multi-choice
-     */
-    @Column()
-    private int type;
-
-    /**
      * The question's text
      */
     @Column()
@@ -56,6 +50,10 @@ public class Question {
     @JoinColumn(name = "exam_id")
     private Exam exam;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "type")
+    private QuestionType questionType;
+
     /**
      * Constructor
      */
@@ -73,9 +71,7 @@ public class Question {
      * @param note      the note
      * @param exam      the exam
      */
-    public Question(int type, String text, Date createdAt, Date updatedAt, String note, Exam exam) {
-        super();
-        this.type = type;
+    public Question(String text, Date createdAt, Date updatedAt, String note, Exam exam) {
         this.text = text;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -99,24 +95,6 @@ public class Question {
      */
     public void setId(Long id) {
         this.id = id;
-    }
-
-    /**
-     * Gets type.
-     *
-     * @return the type of question
-     */
-    public int getType() {
-        return type;
-    }
-
-    /**
-     * Sets type.
-     *
-     * @param type the type
-     */
-    public void setType(int type) {
-        this.type = type;
     }
 
     /**
@@ -208,5 +186,13 @@ public class Question {
      */
     public void setExam(Exam exam) {
         this.exam = exam;
+    }
+
+    public QuestionType getQuestionType() {
+        return questionType;
+    }
+
+    public void setQuestionType(QuestionType questionType) {
+        this.questionType = questionType;
     }
 }

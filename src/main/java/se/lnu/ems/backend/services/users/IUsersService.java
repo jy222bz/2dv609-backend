@@ -1,9 +1,9 @@
 package se.lnu.ems.backend.services.users;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import se.lnu.ems.backend.models.User;
-
-import java.util.List;
+import se.lnu.ems.backend.services.common.EntitySpecification;
 
 /**
  * A class for the Users Service.
@@ -16,10 +16,11 @@ public interface IUsersService {
     /**
      * It retrieves and returns the users.
      *
-     * @param pageable pageable.
-     * @return List<User> list
+     * @param specification the specification
+     * @param pageable      pageable.
+     * @return List<User>  list
      */
-    List<User> retrieve(Pageable pageable);
+    Page<User> retrieve(EntitySpecification<User> specification, Pageable pageable);
 
     /**
      * It finds the user by the id.
@@ -28,6 +29,8 @@ public interface IUsersService {
      * @return User user
      */
     User findById(Long id);
+
+    User findByEmail(String email);
 
     /**
      * It creates the user in the repository.
@@ -48,6 +51,7 @@ public interface IUsersService {
      * It updates the user.
      *
      * @param user the user.
+     * @return the user
      */
     User update(User user);
 }

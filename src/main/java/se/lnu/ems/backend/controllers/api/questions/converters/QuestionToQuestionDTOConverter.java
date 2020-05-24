@@ -18,6 +18,9 @@ public class QuestionToQuestionDTOConverter implements Converter<Question, Quest
         questionDTO.setText(question.getText());
         questionDTO.setNote(question.getNote());
         questionDTO.setCreatedAt(question.getCreatedAt());
+        questionDTO.setExamId(question.getExam().getId());
+        questionDTO.setType(question.getQuestionType().getId());
+        questionDTO.setTypeName(question.getQuestionType().getName());
         return questionDTO;
     }
 }

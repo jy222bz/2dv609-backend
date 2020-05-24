@@ -1,13 +1,13 @@
 package se.lnu.ems.backend.services.exams;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import se.lnu.ems.backend.models.Exam;
 import se.lnu.ems.backend.repositories.ExamsRepository;
 import se.lnu.ems.backend.services.common.EntitySpecification;
+import se.lnu.ems.backend.services.exams.exceptions.ExamInvalidEndDateException;
 import se.lnu.ems.backend.services.exams.exceptions.ExamNotFoundException;
-
-import java.util.List;
 
 /**
  * This class is a service implementation of the exam service interface.
@@ -35,8 +35,8 @@ public class ExamsServiceImpl implements IExamsService {
      * @return A list of exams that meet the paging restrictions.
      */
     @Override
-    public List<Exam> retrieve(Pageable pageable, EntitySpecification<Exam> specification) {
-        return examsRepository.findAll(specification, pageable).toList();
+    public Page<Exam> retrieve(EntitySpecification<Exam> specification, Pageable pageable) {
+        return examsRepository.findAll(specification, pageable);
     }
 
     /**
@@ -54,6 +54,10 @@ public class ExamsServiceImpl implements IExamsService {
      */
     @Override
     public Exam create(Exam exam) {
+        // check dates
+        if (exam.getEndAt().getTime() < exam.getStartAt().getTime()) {
+            throw new ExamInvalidEndDateException();
+        }
         return examsRepository.save(exam);
     }
 

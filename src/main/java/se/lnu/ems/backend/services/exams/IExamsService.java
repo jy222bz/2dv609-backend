@@ -1,14 +1,13 @@
 package se.lnu.ems.backend.services.exams;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import se.lnu.ems.backend.models.Exam;
 import se.lnu.ems.backend.services.common.EntitySpecification;
 
-import java.util.List;
-
 
 public interface IExamsService {
-    List<Exam> retrieve(Pageable pageable, EntitySpecification<Exam> specification);
+    Page<Exam> retrieve(EntitySpecification<Exam> specification, Pageable pageable);
 
     Exam findById(long id);
 

@@ -30,7 +30,7 @@ public class RetrieveInput {
 
     @Nullable
     @Size(max = 255)
-    private String title;
+    private String filterValue;
 
     @Nullable
     private String note;
@@ -76,24 +76,6 @@ public class RetrieveInput {
     }
 
     /**
-     * Gets title.
-     *
-     * @return the title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * Sets title.
-     *
-     * @param title the title
-     */
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    /**
      * Gets note.
      *
      * @return the note
@@ -130,4 +112,12 @@ public class RetrieveInput {
     }
 
 
+    @Nullable
+    public String getFilterValue() {
+        return filterValue;
+    }
+
+    public void setFilterValue(@Nullable String filterValue) {
+        this.filterValue = filterValue;
+    }
 }

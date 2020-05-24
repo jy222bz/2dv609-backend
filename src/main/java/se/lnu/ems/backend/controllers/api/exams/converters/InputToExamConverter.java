@@ -14,7 +14,16 @@ import java.util.Date;
 public class InputToExamConverter implements Converter<CreateInput, Exam> {
 
     @Override
-    public Exam convert(CreateInput source) {
-        return new Exam(new Date(), source.getStartDate(), source.getEndDate(), source.getCredits(), source.getCourseCode(), source.getTitle(), source.getNote());
+    public Exam convert(CreateInput input) {
+        Exam exam = new Exam();
+        exam.setCreatedAt(new Date());
+        exam.setUpdatedAt(new Date());
+        exam.setCourseCode(input.getCourseCode());
+        exam.setCredits(input.getCredits());
+        exam.setNote(input.getNote());
+        exam.setTitle(input.getTitle());
+        exam.setStartAt(input.getStartAt());
+        exam.setEndAt(input.getEndAt());
+        return exam;
     }
 }

@@ -1,7 +1,6 @@
 package se.lnu.ems.backend.controllers.api.exams;
 
 import org.springframework.core.convert.ConversionService;
-import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,13 +13,12 @@ import se.lnu.ems.backend.controllers.api.exams.input.UpdateInput;
 import se.lnu.ems.backend.errors.common.BadRequestException;
 import se.lnu.ems.backend.models.Exam;
 import se.lnu.ems.backend.services.common.EntitySpecification;
-import se.lnu.ems.backend.services.exams.IExamsService;
 import se.lnu.ems.backend.services.common.search.SearchCriteria;
 import se.lnu.ems.backend.services.common.search.SearchOperation;
+import se.lnu.ems.backend.services.exams.IExamsService;
 
 import javax.validation.Valid;
 import java.util.Date;
-import java.util.List;
 
 /**
  * RestController for the exam component.
@@ -73,14 +71,11 @@ public class ExamsController {
             throw new BadRequestException(result.getAllErrors());
         }
         EntitySpecification<Exam> specification = new EntitySpecification<>();
-        specification.addIfValueNotEmpty(new SearchCriteria("title", input.getTitle(), SearchOperation.MATCH));
+        specification.addIfValueNotEmpty(new SearchCriteria("title", input.getFilterValue(), SearchOperation.MATCH));
         specification.addIfValueNotEmpty(new SearchCriteria("courseCode", input.getCourseCode(), SearchOperation.MATCH));
         specification.addIfValueNotEmpty(new SearchCriteria("note", input.getNote(), SearchOperation.MATCH));
-        List<Exam> exams = examsService.retrieve(PageRequest.of(input.getPageIndex(), input.getPageSize()), specification);
-        return conversionService.convert(exams,
-                TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(Exam.class)),
-                TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(ExamDTO.class))
-        );
+        return examsService.retrieve(specification, PageRequest.of(input.getPageIndex(), input.getPageSize()))
+                .map(exam -> conversionService.convert(exam, ExamDTO.class));
     }
 
 
@@ -97,7 +92,7 @@ public class ExamsController {
     @PostMapping(produces = "application/json", consumes = "application/json")
     public ResponseEntity<Exam> create(@RequestBody @Valid CreateInput input, BindingResult result) {
         if (result.hasErrors()) {
-            throw new BadRequestException("Input values are invalid.");
+            throw new BadRequestException("Input values are invalid.", result.getAllErrors());
         }
         Exam exam = examsService.create(conversionService.convert(input, Exam.class));
         return ResponseEntity.accepted().body(exam);
@@ -118,30 +113,29 @@ public class ExamsController {
     @PutMapping(value = "/{id}", consumes = "application/json")
     public Object update(@RequestBody @Valid UpdateInput input, BindingResult result, @PathVariable("id") @Valid long id) {
         if (result.hasErrors()) {
-            throw new BadRequestException("Unable to update exam.");
+            throw new BadRequestException("Unable to update exam.", result.getAllErrors());
         }
-        // Temporary solution
-        // Revise
         Exam exam = examsService.findById(id);
-
+        if (input.getTitle() != null) {
+            exam.setTitle(input.getTitle());
+        }
         if (input.getCourseCode() != null) {
             exam.setCourseCode(input.getCourseCode());
         }
-        exam.setCredits(input.getCredits());
-        if (input.getEndDate() != null) {
-            exam.setEndAt(input.getEndDate());
+        if (input.getCredits() != null) {
+            exam.setCredits(input.getCredits());
         }
-        if (input.getStartDate() != null) {
-            exam.setStartAt(input.getStartDate());
+        if (input.getStartAt() != null) {
+            exam.setStartAt(input.getStartAt());
         }
-        if (input.getTitle() != null) {
-            exam.setTitle(input.getTitle());
+        if (input.getEndAt() != null) {
+            exam.setEndAt(input.getEndAt());
         }
         if (input.getNote() != null) {
             exam.setNote(input.getNote());
         }
         exam.setUpdatedAt(new Date());
-        return examsService.update(exam);
+        return conversionService.convert(examsService.update(exam), ExamDTO.class);
     }
 
     /**
@@ -151,9 +145,14 @@ public class ExamsController {
      * @param id The id of the exam
      * @implNote There were some problems sending DELETE requests, hence the request method and response body annotation.
      */
-    @DeleteMapping(value = "/{id}", consumes = "application/json")
+    @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteExam(@PathVariable long id) {
         examsService.delete(examsService.findById(id));
+    }
+
+    @GetMapping(value = "/{id}")
+    public ExamDTO retrieve(@PathVariable long id) {
+        return conversionService.convert(examsService.findById(id), ExamDTO.class);
     }
 }

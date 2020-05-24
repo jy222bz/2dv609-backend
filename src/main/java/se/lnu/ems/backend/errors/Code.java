@@ -21,6 +21,12 @@ public enum Code {
      * The User could not be created.
      */
     USER_COULD_NOT_BE_CREATED(-5001, "The user could not created!"),
+
+    /**
+     * The User already exists.
+     */
+    USER_ALREADY_EXISTS(-5002, "The user already exits!"),
+
     /**
      * The Role not found.
      */
@@ -30,6 +36,10 @@ public enum Code {
      * Exam not found
      */
     EXAM_NOT_FOUND(-7000, "The exam does not exist."),
+    /**
+     * The Exam end date invalid.
+     */
+    EXAM_END_DATE_INVALID(-7001, "The exam has an invalid end date."),
 
     /**
      * The Question not found.
@@ -50,6 +60,8 @@ public enum Code {
      * The Auth unauthenticated.
      */
     AUTH_UNAUTHENTICATED(-9002, "User is unauthenticated"),
+
+    QUESTION_TYPE_NOT_FOUND(-10000, "The question type is not found!"),
 
     ;
 

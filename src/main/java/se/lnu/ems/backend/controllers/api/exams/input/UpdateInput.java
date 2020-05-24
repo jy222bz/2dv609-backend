@@ -1,15 +1,11 @@
 package se.lnu.ems.backend.controllers.api.exams.input;
 
-import java.util.Date;
+import org.springframework.lang.Nullable;
 
-import javax.persistence.Column;
-import javax.validation.constraints.Future;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.springframework.lang.Nullable;
+import java.util.Date;
 
 /**
  * The type Update input.
@@ -19,49 +15,41 @@ public class UpdateInput {
 	/**
 	 * The date when the exam can be started. The student can only do the exam
 	 */
-	@Column(name = "start_at")
 	@Nullable
-	@Future
-	private Date startDate;
+	private Date startAt;
 	
 	/**
 	 * The date when the exam ends. After this date, the student can 
 	 * no longer do the exam.
 	 */
-	@Column(name = "end_at")
 	@Nullable
-	@Future
-	private Date endDate;
+	private Date endAt;
 	
 	/**
 	 *  The class code. For instance, 2DV609.
 	 */
-	@Column(name = "course_code", length = 32)
 	@Nullable
 	private String courseCode;
 	
 	/**
 	 *  Credits, also called högskolepoäng in swedish. 
 	 */
-	@Column(name = "credits")
 	@Nullable
 	@Min(0)
 	@Max(15)
-	private float credits;
+	private Float credits;
 	
 	
 	/**
 	 * The title of the exam.
 	 */
-	@Column(name = "title")
 	@Nullable
-	@Size(min = 0, max = 64)
+	@Size(max = 64)
 	private String title;
 	
 	/**
 	 * A note or description of the exam.
 	 */
-	@Column(name = "note")
 	@Nullable
 	private String note;
 
@@ -89,17 +77,17 @@ public class UpdateInput {
      *
      * @return The start date of the exam.
      */
-    public Date getStartDate() {
-		return startDate;
+    public Date getStartAt() {
+		return startAt;
 	}
 
     /**
      * Sets start date.
      *
-     * @param startDate A new start date.
+     * @param startAt A new start date.
      */
-    public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+    public void setStartAt(Date startAt) {
+		this.startAt = startAt;
 	}
 
     /**
@@ -107,17 +95,17 @@ public class UpdateInput {
      *
      * @return The end date of the exam.
      */
-    public Date getEndDate() {
-		return endDate;
+    public Date getEndAt() {
+		return endAt;
 	}
 
     /**
      * Sets end date.
      *
-     * @param endDate A new end date of the exam.
+     * @param endAt A new end date of the exam.
      */
-    public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+    public void setEndAt(Date endAt) {
+		this.endAt = endAt;
 	}
 
     /**
@@ -143,7 +131,7 @@ public class UpdateInput {
      *
      * @return Credits(högskolepoäng) corresponding to the exam.
      */
-    public float getCredits() {
+    public Float getCredits() {
 		return credits;
 	}
 
@@ -152,7 +140,7 @@ public class UpdateInput {
      *
      * @param credits New amount of credits for the exam.
      */
-    public void setCredits(float credits) {
+    public void setCredits(Float credits) {
 		this.credits = credits;
 	}
 

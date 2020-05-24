@@ -1,6 +1,8 @@
 package se.lnu.ems.backend.controllers.api.questions.input;
 
-import javax.persistence.Column;
+import org.springframework.lang.Nullable;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * The type Create input question.
@@ -10,32 +12,28 @@ public class CreateInput {
     /**
      * The type of question text or multi-choice
      */
-    @Column(name = "type")
-    private int type;
+    @NotNull
+    private Long type;
 
     /**
      * The question's text
      */
-    @Column(name = "text")
+    @NotNull
     private String text;
 
     /**
      * Description of the question
      */
-    @Column(name = "note")
+    @Nullable
     private String note;
 
-    /**
-     * Which exam this question belongs
-     */
-    private long examId;
 
     /**
      * Gets type.
      *
      * @return type of the question
      */
-    public int getType() {
+    public Long getType() {
         return type;
     }
 
@@ -44,7 +42,7 @@ public class CreateInput {
      *
      * @param type the type
      */
-    public void setType(int type) {
+    public void setType(Long type) {
         this.type = type;
     }
 
@@ -82,24 +80,6 @@ public class CreateInput {
      */
     public void setNote(String note) {
         this.note = note;
-    }
-
-    /**
-     * Gets exam id.
-     *
-     * @return exam_id which the question belongs to
-     */
-    public long getExamId() {
-        return examId;
-    }
-
-    /**
-     * Sets exam id.
-     *
-     * @param examId the exam id
-     */
-    public void setExamId(long examId) {
-        this.examId = examId;
     }
 
 }

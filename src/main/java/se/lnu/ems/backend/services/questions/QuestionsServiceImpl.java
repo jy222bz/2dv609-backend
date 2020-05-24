@@ -36,6 +36,15 @@ public class QuestionsServiceImpl implements IQuestionsService {
     }
 
     @Override
+    public Question findByExamIdAndId(long examId, long id) {
+        Question question = questionsRepository.findById(id).orElseThrow(QuestionNotFoundException::new);
+        if (question.getExam().getId() != examId) {
+            throw new QuestionNotFoundException();
+        }
+        return question;
+    }
+
+    @Override
     public Question create(Question question) {
         return questionsRepository.save(question);
     }

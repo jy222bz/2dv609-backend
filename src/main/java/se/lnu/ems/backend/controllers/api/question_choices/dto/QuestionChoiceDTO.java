@@ -1,19 +1,18 @@
-package se.lnu.ems.backend.controllers.api.questions.dto;
+package se.lnu.ems.backend.controllers.api.question_choices.dto;
 
 import java.util.Date;
 
+
 /**
- * The type Question dto.
+ * The type Question choice dto.
  */
-public class QuestionDTO {
+public class QuestionChoiceDTO {
     private Long id;
     private String text;
     private String note;
     private Date createdAt;
-    private Long examId;
-    private Long type;
-    private String typeName;
-
+    private Long questionId;
+    private boolean right;
 
     /**
      * Gets id.
@@ -88,56 +87,38 @@ public class QuestionDTO {
     }
 
     /**
-     * Gets exam id.
+     * Gets question id.
      *
-     * @return the exam id
+     * @return the question id
      */
-    public Long getExamId() {
-        return examId;
+    public Long getQuestionId() {
+        return questionId;
     }
 
     /**
-     * Sets exam id.
+     * Sets question id.
      *
-     * @param examId the exam id
+     * @param questionId the question id
      */
-    public void setExamId(Long examId) {
-        this.examId = examId;
+    public void setQuestionId(Long questionId) {
+        this.questionId = questionId;
     }
 
     /**
-     * Gets type name.
+     * Is right boolean.
      *
-     * @return the type name
+     * @return the boolean
      */
-    public String getTypeName() {
-        return typeName;
+    public boolean isRight() {
+        return right;
     }
 
     /**
-     * Sets type name.
+     * Sets right.
      *
-     * @param typeName the type name
+     * @param right the right
      */
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
-    }
-
-    /**
-     * Gets type.
-     *
-     * @return the type
-     */
-    public Long getType() {
-        return type;
-    }
-
-    /**
-     * Sets type.
-     *
-     * @param type the type
-     */
-    public void setType(Long type) {
-        this.type = type;
+    public void setRight(boolean right) {
+        this.right = right;
     }
 }

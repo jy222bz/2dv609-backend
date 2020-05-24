@@ -27,6 +27,15 @@ public interface IQuestionsService {
     Question findById(long id);
 
     /**
+     * Find by id and exam question.
+     *
+     * @param examId the exam id
+     * @param id     the id
+     * @return the question
+     */
+    Question findByExamIdAndId(long examId, long id);
+
+    /**
      * Create question.
      *
      * @param question the question

@@ -1,4 +1,4 @@
-package se.lnu.ems.backend.controllers.api.questions.input;
+package se.lnu.ems.backend.controllers.api.question_choices.input;
 
 import javax.persistence.Column;
 
@@ -11,7 +11,7 @@ public class UpdateInput {
      * The type of question text or multi-choice
      */
     @Column(name = "type")
-    private Long type;
+    private int type;
 
     /**
      * The question's text
@@ -30,7 +30,7 @@ public class UpdateInput {
      *
      * @return the type
      */
-    public Long getType() {
+    public int getType() {
         return type;
     }
 
@@ -39,7 +39,7 @@ public class UpdateInput {
      *
      * @param type the type
      */
-    public void setType(Long type) {
+    public void setType(int type) {
         this.type = type;
     }
 

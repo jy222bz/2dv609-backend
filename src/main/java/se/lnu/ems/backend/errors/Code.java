@@ -45,6 +45,7 @@ public enum Code {
      * The Question not found.
      */
     QUESTION_NOT_FOUND(-8000, "The question does not exist."),
+    QUESTION_CHOICE_NOT_FOUND(-8100, "The question choice does not exist."),
 
     /**
      * The Auth credentials invalid.

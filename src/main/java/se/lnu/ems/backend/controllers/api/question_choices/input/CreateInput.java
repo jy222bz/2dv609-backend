@@ -1,52 +1,31 @@
-package se.lnu.ems.backend.controllers.api.questions.input;
+package se.lnu.ems.backend.controllers.api.question_choices.input;
 
-import javax.persistence.Column;
+import org.springframework.lang.Nullable;
+
+import javax.validation.constraints.NotNull;
 
 /**
- * The type Update input.
+ * The type Create input question.
  */
-public class UpdateInput {
-
-    /**
-     * The type of question text or multi-choice
-     */
-    @Column(name = "type")
-    private Long type;
-
+public class CreateInput {
     /**
      * The question's text
      */
-    @Column(name = "text")
+    @NotNull
     private String text;
 
     /**
      * Description of the question
      */
-    @Column(name = "note")
+    @Nullable
     private String note;
 
-    /**
-     * Gets type.
-     *
-     * @return the type
-     */
-    public Long getType() {
-        return type;
-    }
 
-    /**
-     * Sets type.
-     *
-     * @param type the type
-     */
-    public void setType(Long type) {
-        this.type = type;
-    }
 
     /**
      * Gets text.
      *
-     * @return the text
+     * @return text of the question
      */
     public String getText() {
         return text;
@@ -64,7 +43,7 @@ public class UpdateInput {
     /**
      * Gets note.
      *
-     * @return the note
+     * @return note for the question
      */
     public String getNote() {
         return note;
@@ -78,4 +57,5 @@ public class UpdateInput {
     public void setNote(String note) {
         this.note = note;
     }
+
 }

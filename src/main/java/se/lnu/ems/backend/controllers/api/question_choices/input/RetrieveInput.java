@@ -1,4 +1,4 @@
-package se.lnu.ems.backend.controllers.api.questions.input;
+package se.lnu.ems.backend.controllers.api.question_choices.input;
 
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;

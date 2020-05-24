@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import se.lnu.ems.backend.controllers.api.questions.dto.QuestionDTO;
 import se.lnu.ems.backend.controllers.api.questions.input.CreateInput;
 import se.lnu.ems.backend.controllers.api.questions.input.RetrieveInput;
+import se.lnu.ems.backend.controllers.api.questions.input.UpdateInput;
 import se.lnu.ems.backend.errors.common.BadRequestException;
 import se.lnu.ems.backend.models.Exam;
 import se.lnu.ems.backend.models.Question;
@@ -86,7 +87,7 @@ public class QuestionsController {
     }
 
     @GetMapping("/count")
-    public Object deleteQuestion(@Valid @PathVariable long examId) {
+    public Object count(@Valid @PathVariable long examId) {
         Exam exam = examsService.findById(examId);
         EntitySpecification<Question> specification = new EntitySpecification<>();
         specification.addIfValueNotEmpty(new SearchCriteria("exam", exam, SearchOperation.EQUAL));
@@ -102,7 +103,7 @@ public class QuestionsController {
      */
     @GetMapping("/{id}")
     public Object retrieve(@Valid @PathVariable long examId, @PathVariable long id) {
-        return conversionService.convert(questionsService.findById(id), QuestionDTO.class);
+        return conversionService.convert(questionsService.findByExamIdAndId(examId, id), QuestionDTO.class);
     }
 
     /**
@@ -138,12 +139,12 @@ public class QuestionsController {
      * @return ResponseEntity<Question>   response entity
      */
     @PutMapping("/{id}")
-    public Object updateQuestion(@Valid @PathVariable long examId,
-                                 @RequestBody @Valid CreateInput input, BindingResult result, @PathVariable long id) {
+    public Object update(@Valid @PathVariable long examId,
+                         @RequestBody @Valid UpdateInput input, BindingResult result, @PathVariable long id) {
         if (result.hasErrors()) {
             throw new BadRequestException(result.getAllErrors());
         }
-        Question question = questionsService.findById(id);
+        Question question = questionsService.findByExamIdAndId(examId, id);
         if (input.getNote() != null) {
             question.setNote(input.getNote());
         }
@@ -163,7 +164,7 @@ public class QuestionsController {
      */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteQuestion(@Valid @PathVariable long examId, @Valid @PathVariable long id) {
+    public void delete(@Valid @PathVariable long examId, @Valid @PathVariable long id) {
         questionsService.delete(questionsService.findById(id));
     }
 }

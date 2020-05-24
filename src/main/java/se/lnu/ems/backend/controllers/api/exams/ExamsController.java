@@ -150,4 +150,9 @@ public class ExamsController {
     public void deleteExam(@PathVariable long id) {
         examsService.delete(examsService.findById(id));
     }
+
+    @GetMapping(value = "/{id}")
+    public ExamDTO retrieve(@PathVariable long id) {
+        return conversionService.convert(examsService.findById(id), ExamDTO.class);
+    }
 }

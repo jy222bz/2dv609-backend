@@ -93,8 +93,8 @@ public class QuestionsController {
      * @return Question question by id
      */
     @GetMapping("/{id}")
-    public Question retrieve(@Valid @PathVariable long examId, @PathVariable long id) {
-        return questionsService.findById(id);
+    public Object retrieve(@Valid @PathVariable long examId, @PathVariable long id) {
+        return conversionService.convert(questionsService.findById(id), QuestionDTO.class);
     }
 
     /**
@@ -117,7 +117,7 @@ public class QuestionsController {
         }
         question.setQuestionType(questionTypesService.findById(input.getType()));
         question.setExam(examsService.findById(examId));
-        return questionsService.create(question);
+        return conversionService.convert(questionsService.create(question), QuestionDTO.class);
     }
 
     /**
@@ -144,7 +144,7 @@ public class QuestionsController {
         }
         question.setQuestionType(questionTypesService.findById(input.getType()));
         question.setUpdatedAt(new Date());
-        return questionsService.update(question);
+        return conversionService.convert(questionsService.update(question), QuestionDTO.class);
     }
 
     /**

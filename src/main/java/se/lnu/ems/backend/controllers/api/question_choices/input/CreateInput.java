@@ -20,7 +20,8 @@ public class CreateInput {
     @Nullable
     private String note;
 
-
+    @NotNull
+    private boolean correct;
 
     /**
      * Gets text.
@@ -58,4 +59,21 @@ public class CreateInput {
         this.note = note;
     }
 
+    /**
+     * Is correct boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isCorrect() {
+        return correct;
+    }
+
+    /**
+     * Sets correct.
+     *
+     * @param correct the correct
+     */
+    public void setCorrect(boolean correct) {
+        this.correct = correct;
+    }
 }

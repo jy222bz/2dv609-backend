@@ -1,47 +1,27 @@
 package se.lnu.ems.backend.controllers.api.question_choices.input;
 
-import javax.persistence.Column;
+import org.springframework.lang.Nullable;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * The type Update input.
  */
 public class UpdateInput {
-
-    /**
-     * The type of question text or multi-choice
-     */
-    @Column(name = "type")
-    private int type;
-
     /**
      * The question's text
      */
-    @Column(name = "text")
+    @NotNull
     private String text;
 
     /**
      * Description of the question
      */
-    @Column(name = "note")
+    @Nullable
     private String note;
 
-    /**
-     * Gets type.
-     *
-     * @return the type
-     */
-    public int getType() {
-        return type;
-    }
-
-    /**
-     * Sets type.
-     *
-     * @param type the type
-     */
-    public void setType(int type) {
-        this.type = type;
-    }
+    @NotNull
+    private boolean correct;
 
     /**
      * Gets text.
@@ -77,5 +57,23 @@ public class UpdateInput {
      */
     public void setNote(String note) {
         this.note = note;
+    }
+
+    /**
+     * Is correct boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isCorrect() {
+        return correct;
+    }
+
+    /**
+     * Sets correct.
+     *
+     * @param correct the correct
+     */
+    public void setCorrect(boolean correct) {
+        this.correct = correct;
     }
 }

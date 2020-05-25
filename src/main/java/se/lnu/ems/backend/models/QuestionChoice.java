@@ -51,7 +51,7 @@ public class QuestionChoice {
     private Question question;
 
     @Column
-    private int correct;
+    private boolean correct;
 
     /**
      * Gets id.
@@ -162,11 +162,11 @@ public class QuestionChoice {
     }
 
     /**
-     * Gets correct.
+     * Is correct boolean.
      *
-     * @return the correct
+     * @return the boolean
      */
-    public int getCorrect() {
+    public boolean isCorrect() {
         return correct;
     }
 
@@ -175,7 +175,7 @@ public class QuestionChoice {
      *
      * @param correct the correct
      */
-    public void setCorrect(int correct) {
+    public void setCorrect(boolean correct) {
         this.correct = correct;
     }
 }

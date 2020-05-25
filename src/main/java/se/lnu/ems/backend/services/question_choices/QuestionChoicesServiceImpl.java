@@ -37,6 +37,15 @@ public class QuestionChoicesServiceImpl implements IQuestionChoicesService {
     }
 
     @Override
+    public QuestionChoice findByQuestionIdAndId(long questionId, long id) {
+        QuestionChoice questionChoice = questionChoicesRepository.findById(id).orElseThrow(QuestionChoiceNotFoundException::new);
+        if (questionChoice.getQuestion().getId() != questionId) {
+            throw new QuestionChoiceNotFoundException();
+        }
+        return questionChoice;
+    }
+
+    @Override
     public QuestionChoice create(QuestionChoice questionChoice) {
         return questionChoicesRepository.save(questionChoice);
     }

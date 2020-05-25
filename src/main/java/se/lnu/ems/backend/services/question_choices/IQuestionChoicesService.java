@@ -28,6 +28,15 @@ public interface IQuestionChoicesService {
      */
     QuestionChoice findById(long id);
 
+    /**
+     * Find by question id and id question choice.
+     *
+     * @param questionId the question id
+     * @param id         the id
+     * @return the question choice
+     */
+    QuestionChoice findByQuestionIdAndId(long questionId, long id);
+
 
     /**
      * Create question choice.

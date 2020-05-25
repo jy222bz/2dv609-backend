@@ -11,8 +11,9 @@ public class QuestionChoiceDTO {
     private String text;
     private String note;
     private Date createdAt;
+    private Date updatedAt;
     private Long questionId;
-    private boolean right;
+    private boolean correct;
 
     /**
      * Gets id.
@@ -105,20 +106,38 @@ public class QuestionChoiceDTO {
     }
 
     /**
-     * Is right boolean.
+     * Gets updated at.
      *
-     * @return the boolean
+     * @return the updated at
      */
-    public boolean isRight() {
-        return right;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
     /**
-     * Sets right.
+     * Sets updated at.
      *
-     * @param right the right
+     * @param updatedAt the updated at
      */
-    public void setRight(boolean right) {
-        this.right = right;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    /**
+     * Is correct boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isCorrect() {
+        return correct;
+    }
+
+    /**
+     * Sets correct.
+     *
+     * @param correct the correct
+     */
+    public void setCorrect(boolean correct) {
+        this.correct = correct;
     }
 }

@@ -9,6 +9,8 @@ import se.lnu.ems.backend.services.common.EntitySpecification;
 import se.lnu.ems.backend.services.users.exceptions.UserAlreadyExistsException;
 import se.lnu.ems.backend.services.users.exceptions.UserNotFoundException;
 
+import java.util.List;
+
 /**
  * A class for the Users Service.
  *
@@ -94,5 +96,10 @@ public class UsersServiceImpl implements IUsersService {
     @Override
     public User update(User user) {
         return usersRepository.save(user);
+    }
+
+    @Override
+    public List<User> findAvailableStudents(Long examId) {
+        return usersRepository.findAvailableStudents(examId);
     }
 }

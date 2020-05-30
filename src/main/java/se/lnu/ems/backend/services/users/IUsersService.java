@@ -5,6 +5,8 @@ import org.springframework.data.domain.Pageable;
 import se.lnu.ems.backend.models.User;
 import se.lnu.ems.backend.services.common.EntitySpecification;
 
+import java.util.List;
+
 /**
  * A class for the Users Service.
  *
@@ -18,7 +20,7 @@ public interface IUsersService {
      *
      * @param specification the specification
      * @param pageable      pageable.
-     * @return List<User>  list
+     * @return List<User>     list
      */
     Page<User> retrieve(EntitySpecification<User> specification, Pageable pageable);
 
@@ -30,6 +32,12 @@ public interface IUsersService {
      */
     User findById(Long id);
 
+    /**
+     * Find by email user.
+     *
+     * @param email the email
+     * @return the user
+     */
     User findByEmail(String email);
 
     /**
@@ -54,4 +62,13 @@ public interface IUsersService {
      * @return the user
      */
     User update(User user);
+
+
+    /**
+     * Find available students list.
+     *
+     * @param examId the exam id
+     * @return the list
+     */
+    List<User> findAvailableStudents(Long examId);
 }

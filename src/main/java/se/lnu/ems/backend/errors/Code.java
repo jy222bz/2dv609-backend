@@ -40,11 +40,18 @@ public enum Code {
      * The Exam end date invalid.
      */
     EXAM_END_DATE_INVALID(-7001, "The exam has an invalid end date."),
+    /**
+     * The Exam student not found.
+     */
+    EXAM_STUDENT_NOT_FOUND(-7101, "The student does not exist."),
 
     /**
      * The Question not found.
      */
     QUESTION_NOT_FOUND(-8000, "The question does not exist."),
+    /**
+     * The Question choice not found.
+     */
     QUESTION_CHOICE_NOT_FOUND(-8100, "The question choice does not exist."),
 
     /**
@@ -62,6 +69,9 @@ public enum Code {
      */
     AUTH_UNAUTHENTICATED(-9002, "User is unauthenticated"),
 
+    /**
+     * The Question type not found.
+     */
     QUESTION_TYPE_NOT_FOUND(-10000, "The question type is not found!"),
 
     ;

@@ -107,18 +107,38 @@ public class ExamStudentDTO {
         this.userId = userId;
     }
 
+    /**
+     * Gets created at.
+     *
+     * @return the created at
+     */
     public Date getCreatedAt() {
         return createdAt;
     }
 
+    /**
+     * Sets created at.
+     *
+     * @param createdAt the created at
+     */
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
+    /**
+     * Gets exam id.
+     *
+     * @return the exam id
+     */
     public Long getExamId() {
         return examId;
     }
 
+    /**
+     * Sets exam id.
+     *
+     * @param examId the exam id
+     */
     public void setExamId(Long examId) {
         this.examId = examId;
     }

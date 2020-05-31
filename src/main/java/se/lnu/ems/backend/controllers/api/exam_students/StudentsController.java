@@ -18,7 +18,6 @@ import se.lnu.ems.backend.services.common.search.SearchCriteria;
 import se.lnu.ems.backend.services.common.search.SearchOperation;
 import se.lnu.ems.backend.services.exam_sutdents.IExamStudentsService;
 import se.lnu.ems.backend.services.exams.IExamsService;
-import se.lnu.ems.backend.services.questions.exceptions.QuestionNotFoundException;
 import se.lnu.ems.backend.services.users.IUsersService;
 
 import javax.validation.Valid;
@@ -29,7 +28,7 @@ import java.util.List;
 /**
  * The type Questions controller.
  */
-@RestController("studentsController")
+@RestController("StudentsController")
 @RequestMapping("/api/v1/exams/{examId}/students")
 public class StudentsController {
 

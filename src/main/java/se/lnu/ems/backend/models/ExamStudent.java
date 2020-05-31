@@ -4,13 +4,11 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * The type Question.
- *
- * @author Sirwan
+ * The type Exam student.
  */
 @Entity
-@Table(name = "questions")
-public class Question {
+@Table(name = "exam_students")
+public class ExamStudent {
 
     /**
      * ID
@@ -18,12 +16,6 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    /**
-     * The question's text
-     */
-    @Column()
-    private String text;
 
     /**
      * The date the question was created
@@ -38,12 +30,6 @@ public class Question {
     private Date updatedAt;
 
     /**
-     * Description of the question
-     */
-    @Column()
-    private String note;
-
-    /**
      * Which exam this question belongs
      */
     @ManyToOne(fetch = FetchType.LAZY)
@@ -51,32 +37,8 @@ public class Question {
     private Exam exam;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "type")
-    private QuestionType questionType;
-
-    /**
-     * Constructor
-     */
-    public Question() {
-
-    }
-
-    /**
-     * Constructor with args
-     *
-     * @param text      the text
-     * @param createdAt the created at
-     * @param updatedAt the updated at
-     * @param note      the note
-     * @param exam      the exam
-     */
-    public Question(String text, Date createdAt, Date updatedAt, String note, Exam exam) {
-        this.text = text;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.note = note;
-        this.exam = exam;
-    }
+    @JoinColumn(name = "user_id")
+    private User user;
 
     /**
      * Gets id.
@@ -94,24 +56,6 @@ public class Question {
      */
     public void setId(Long id) {
         this.id = id;
-    }
-
-    /**
-     * Gets text.
-     *
-     * @return text of the question
-     */
-    public String getText() {
-        return text;
-    }
-
-    /**
-     * Sets text.
-     *
-     * @param text the text
-     */
-    public void setText(String text) {
-        this.text = text;
     }
 
     /**
@@ -150,24 +94,6 @@ public class Question {
         this.updatedAt = updatedAt;
     }
 
-    /**
-     * Gets note.
-     *
-     * @return note about question
-     */
-    public String getNote() {
-        return note;
-    }
-
-    /**
-     * Sets note.
-     *
-     * @param note the note
-     */
-    public void setNote(String note) {
-        this.note = note;
-    }
-
 
     /**
      * Gets exam.
@@ -188,20 +114,20 @@ public class Question {
     }
 
     /**
-     * Gets question type.
+     * Gets user.
      *
-     * @return the question type
+     * @return the user
      */
-    public QuestionType getQuestionType() {
-        return questionType;
+    public User getUser() {
+        return user;
     }
 
     /**
-     * Sets question type.
+     * Sets user.
      *
-     * @param questionType the question type
+     * @param user the user
      */
-    public void setQuestionType(QuestionType questionType) {
-        this.questionType = questionType;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

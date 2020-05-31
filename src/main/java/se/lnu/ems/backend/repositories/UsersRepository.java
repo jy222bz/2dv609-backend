@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import se.lnu.ems.backend.models.User;
 
+import java.util.List;
+
 /**
  * An interface for the Users Repository.
  *
@@ -21,4 +23,14 @@ public interface UsersRepository extends PagingAndSortingRepository<User, Long>,
      */
     @Query(value = "SELECT * FROM users WHERE email = ?1 limit 1", nativeQuery = true)
     User findByEmail(String email);
+
+
+    /**
+     * Find available students list.
+     *
+     * @param examId the exam id
+     * @return the list
+     */
+    @Query(value = "SELECT * FROM users WHERE (role_id = 3) and id not in (select user_id from exam_students where exam_id = ?1)", nativeQuery = true)
+    List<User> findAvailableStudents(Long examId);
 }

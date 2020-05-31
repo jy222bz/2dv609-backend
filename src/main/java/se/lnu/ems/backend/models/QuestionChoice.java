@@ -9,8 +9,8 @@ import java.util.Date;
  * @author Sirwan
  */
 @Entity
-@Table(name = "questions")
-public class Question {
+@Table(name = "question_choices")
+public class QuestionChoice {
 
     /**
      * ID
@@ -47,36 +47,11 @@ public class Question {
      * Which exam this question belongs
      */
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "exam_id")
-    private Exam exam;
+    @JoinColumn(name = "question_id")
+    private Question question;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "type")
-    private QuestionType questionType;
-
-    /**
-     * Constructor
-     */
-    public Question() {
-
-    }
-
-    /**
-     * Constructor with args
-     *
-     * @param text      the text
-     * @param createdAt the created at
-     * @param updatedAt the updated at
-     * @param note      the note
-     * @param exam      the exam
-     */
-    public Question(String text, Date createdAt, Date updatedAt, String note, Exam exam) {
-        this.text = text;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.note = note;
-        this.exam = exam;
-    }
+    @Column
+    private boolean correct;
 
     /**
      * Gets id.
@@ -168,40 +143,39 @@ public class Question {
         this.note = note;
     }
 
-
     /**
-     * Gets exam.
+     * Gets question.
      *
-     * @return the exam
+     * @return the question
      */
-    public Exam getExam() {
-        return exam;
+    public Question getQuestion() {
+        return question;
     }
 
     /**
-     * Sets exam.
+     * Sets question.
      *
-     * @param exam the exam
+     * @param question the question
      */
-    public void setExam(Exam exam) {
-        this.exam = exam;
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 
     /**
-     * Gets question type.
+     * Is correct boolean.
      *
-     * @return the question type
+     * @return the boolean
      */
-    public QuestionType getQuestionType() {
-        return questionType;
+    public boolean isCorrect() {
+        return correct;
     }
 
     /**
-     * Sets question type.
+     * Sets correct.
      *
-     * @param questionType the question type
+     * @param correct the correct
      */
-    public void setQuestionType(QuestionType questionType) {
-        this.questionType = questionType;
+    public void setCorrect(boolean correct) {
+        this.correct = correct;
     }
 }

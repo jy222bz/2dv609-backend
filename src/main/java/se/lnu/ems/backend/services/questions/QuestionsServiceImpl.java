@@ -8,11 +8,19 @@ import se.lnu.ems.backend.repositories.QuestionsRepository;
 import se.lnu.ems.backend.services.common.EntitySpecification;
 import se.lnu.ems.backend.services.questions.exceptions.QuestionNotFoundException;
 
+/**
+ * The type Questions service.
+ */
 @Service
 public class QuestionsServiceImpl implements IQuestionsService {
 
     private final QuestionsRepository questionsRepository;
 
+    /**
+     * Instantiates a new Questions service.
+     *
+     * @param questionsRepository the questions repository
+     */
     public QuestionsServiceImpl(QuestionsRepository questionsRepository) {
         this.questionsRepository = questionsRepository;
     }
@@ -28,6 +36,15 @@ public class QuestionsServiceImpl implements IQuestionsService {
     }
 
     @Override
+    public Question findByExamIdAndId(long examId, long id) {
+        Question question = questionsRepository.findById(id).orElseThrow(QuestionNotFoundException::new);
+        if (question.getExam().getId() != examId) {
+            throw new QuestionNotFoundException();
+        }
+        return question;
+    }
+
+    @Override
     public Question create(Question question) {
         return questionsRepository.save(question);
     }
@@ -40,5 +57,10 @@ public class QuestionsServiceImpl implements IQuestionsService {
     @Override
     public void delete(Question question) {
         questionsRepository.delete(question);
+    }
+
+    @Override
+    public long count(EntitySpecification<Question> specification) {
+        return questionsRepository.count(specification);
     }
 }

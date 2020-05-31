@@ -1,19 +1,19 @@
-package se.lnu.ems.backend.controllers.api.questions.dto;
+package se.lnu.ems.backend.controllers.api.question_choices.dto;
 
 import java.util.Date;
 
+
 /**
- * The type Question dto.
+ * The type Question choice dto.
  */
-public class QuestionDTO {
+public class QuestionChoiceDTO {
     private Long id;
     private String text;
     private String note;
     private Date createdAt;
-    private Long examId;
-    private Long type;
-    private String typeName;
-
+    private Date updatedAt;
+    private Long questionId;
+    private boolean correct;
 
     /**
      * Gets id.
@@ -88,56 +88,56 @@ public class QuestionDTO {
     }
 
     /**
-     * Gets exam id.
+     * Gets question id.
      *
-     * @return the exam id
+     * @return the question id
      */
-    public Long getExamId() {
-        return examId;
+    public Long getQuestionId() {
+        return questionId;
     }
 
     /**
-     * Sets exam id.
+     * Sets question id.
      *
-     * @param examId the exam id
+     * @param questionId the question id
      */
-    public void setExamId(Long examId) {
-        this.examId = examId;
+    public void setQuestionId(Long questionId) {
+        this.questionId = questionId;
     }
 
     /**
-     * Gets type name.
+     * Gets updated at.
      *
-     * @return the type name
+     * @return the updated at
      */
-    public String getTypeName() {
-        return typeName;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
     /**
-     * Sets type name.
+     * Sets updated at.
      *
-     * @param typeName the type name
+     * @param updatedAt the updated at
      */
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     /**
-     * Gets type.
+     * Is correct boolean.
      *
-     * @return the type
+     * @return the boolean
      */
-    public Long getType() {
-        return type;
+    public boolean isCorrect() {
+        return correct;
     }
 
     /**
-     * Sets type.
+     * Sets correct.
      *
-     * @param type the type
+     * @param correct the correct
      */
-    public void setType(Long type) {
-        this.type = type;
+    public void setCorrect(boolean correct) {
+        this.correct = correct;
     }
 }

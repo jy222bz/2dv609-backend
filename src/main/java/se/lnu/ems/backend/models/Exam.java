@@ -13,7 +13,6 @@ import javax.persistence.Table;
  * The type Exam.
  *
  * @author Hamza
- * @see EMSDesign Document -> Figure 10
  * @since 2020 -05-01 <p> Implementation of the conceptual model according to the design of the exam component, see Figure 10 in the EMS Design Document. </p>
  */
 @Entity

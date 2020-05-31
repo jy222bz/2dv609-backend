@@ -1,7 +1,6 @@
-package se.lnu.ems.backend.controllers.api.questions.input;
+package se.lnu.ems.backend.controllers.api.exam_students.input;
 
 import org.springframework.lang.NonNull;
-import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -23,9 +22,6 @@ public class RetrieveInput {
     @NonNull
     @Min(1)
     private int pageSize;
-
-    @Nullable
-    private String filterValue;
 
 
     /**
@@ -62,23 +58,5 @@ public class RetrieveInput {
      */
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
-    }
-
-    /**
-     * Gets filter value.
-     *
-     * @return the filter value
-     */
-    public String getFilterValue() {
-        return filterValue;
-    }
-
-    /**
-     * Sets filter value.
-     *
-     * @param filterValue the filter value
-     */
-    public void setFilterValue(String filterValue) {
-        this.filterValue = filterValue;
     }
 }
